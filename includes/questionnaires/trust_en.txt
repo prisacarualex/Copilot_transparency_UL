@@ -1,0 +1,5 @@
+<h1>AI Co-pilot Trust Questionnaire</h1>
+Reliability;The AI co-pilot was reliable and consistent in its actions.;Strongly Disagree/Strongly Agree;1/7/4
+Predictability;The AI co-pilot's choices and actions were easy to understand or predict.;Strongly Disagree/Strongly Agree;1/7/4
+Intelligence;I perceived the AI co-pilot as intelligent and capable of assisting me.;Strongly Disagree/Strongly Agree;1/7/4
+Trust;Overall, I trusted the AI co-pilot during the session.;Strongly Disagree/Strongly Agree;1/7/4
