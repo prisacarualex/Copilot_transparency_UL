@@ -1,5 +1,5 @@
 call .venv\Scripts\activate.bat
-python -m nuitka --standalone --windows-console-mode=disable ^
+python -m nuitka --standalone --windows-console-mode=disable --assume-yes-for-downloads ^
   --include-data-dir=".\includes"="includes" ^
   --include-data-dir=".\locales"="locales" ^
   --include-data-file="config.ini"="config.ini" ^
