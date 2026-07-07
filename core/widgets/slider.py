@@ -8,6 +8,7 @@ import math
 from typing import Any, Callable
 
 from pyglet.gl import GL_BLEND, GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA, glBlendFunc, glEnable, glLineWidth
+from pyglet.gl.lib import GLException
 from pyglet.text import Label
 
 from core.constants import COLORS as C
@@ -55,7 +56,12 @@ class Slider(AbstractWidget):
 
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         glEnable(GL_BLEND)
-        glLineWidth(3)
+        try:
+            # macOS's OpenGL Core Profile only accepts a line width of 1.0
+            # and raises GL_INVALID_VALUE for anything else; fall back silently.
+            glLineWidth(3)
+        except GLException:
+            pass
 
         self.containers: dict[str, Container] = dict()
         self.set_sub_containers()

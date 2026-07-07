@@ -7,8 +7,14 @@
 from __future__ import annotations
 
 import gettext
+import os
 import sys
 from pathlib import Path
+
+# Bundled builds (Nuitka/PyInstaller) and Finder/double-click launches don't
+# set the working directory to this file's location, but every relative path
+# in this codebase (config.ini, includes/, locales/...) assumes it does.
+os.chdir(Path(sys.argv[0]).resolve().parent)
 
 # Read and install the specified language iso
 # The LOCALE_PATH constant can't be set into constants.py because

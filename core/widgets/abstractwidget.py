@@ -18,6 +18,7 @@ from pyglet.gl import (  # noqa: F401
     glEnable,
     glLineWidth,
 )
+from pyglet.gl.lib import GLException
 from pyglet.text import HTMLLabel, Label
 
 from core.constants import BFLIM
@@ -48,7 +49,12 @@ class AbstractWidget:
         self.visible: bool = False
         self.logger: Logger = get_logger()
         self.highlight_aoi: str = get_conf_value("Openmatb", "highlight_aoi")
-        glLineWidth(2)
+        try:
+            # macOS's OpenGL Core Profile only accepts a line width of 1.0
+            # and raises GL_INVALID_VALUE for anything else; fall back silently.
+            glLineWidth(2)
+        except GLException:
+            pass
 
         self.m_draw: int = 0
         self.verbose: bool = False

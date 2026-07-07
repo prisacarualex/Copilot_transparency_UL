@@ -1,0 +1,112 @@
+name: Build standalone releases
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            name: macos
+          - os: windows-latest
+            name: windows
+          - os: ubuntu-latest
+            name: linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install nuitka
+
+      - name: Install Linux build dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-dev libx11-dev zip
+
+      - name: Build (macOS)
+        if: matrix.os == 'macos-latest'
+        run: >
+          python -m nuitka --standalone --macos-create-app-bundle
+          --include-data-dir=./includes=includes
+          --include-data-dir=./locales=locales
+          --include-data-file=config.ini=config.ini
+          --include-data-file=LICENSE=LICENSE
+          --include-data-file=README.md=README.md
+          --output-dir=dist
+          main.py
+
+      - name: Build (Windows)
+        if: matrix.os == 'windows-latest'
+        run: >
+          python -m nuitka --standalone --windows-console-mode=disable
+          --include-data-dir=.\includes=includes
+          --include-data-dir=.\locales=locales
+          --include-data-file=config.ini=config.ini
+          --include-data-file=LICENSE=LICENSE
+          --include-data-file=README.md=README.md
+          --output-dir=dist
+          main.py
+
+      - name: Build (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: >
+          python -m nuitka --standalone
+          --include-data-dir=./includes=includes
+          --include-data-dir=./locales=locales
+          --include-data-file=config.ini=config.ini
+          --include-data-file=LICENSE=LICENSE
+          --include-data-file=README.md=README.md
+          --output-dir=dist
+          main.py
+
+      - name: Package (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          cd dist
+          ditto -c -k --sequesterRsrc --keepParent main.app OpenMATB-macos.zip
+
+      - name: Package (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          cd dist
+          7z a -tzip OpenMATB-windows.zip main.dist
+
+      - name: Package (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cd dist
+          zip -r OpenMATB-linux.zip main.dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OpenMATB-${{ matrix.name }}
+          path: dist/OpenMATB-*.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/OpenMATB-*.zip
