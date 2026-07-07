@@ -2,6 +2,8 @@
 # Setup the experiment layout and start tasks
 0:00:00;sysmon;start
 0:00:00;track;start
+0:00:00;communications;voicegender;male
+0:00:00;communications;voiceidiom;english
 0:00:00;communications;start
 0:00:00;resman;start
 
