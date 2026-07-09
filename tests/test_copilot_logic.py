@@ -58,7 +58,7 @@ def test_explain_appends_entry_with_timestamp():
     c.explain("Pump 1 turned ON.")
     assert len(c.history) == 1
     assert "[01:15]" in c.history[0]
-    assert "Pump 1 turned ON." in c.history[0]
+    assert "Pump 1 ON." in c.history[0]
 
 
 def test_explain_timestamp_zero_padded():
@@ -99,7 +99,7 @@ def test_explain_no_widget_does_not_raise():
 def test_transparent_empty_history_shows_awaiting():
     c = _make_copilot("transparent")
     html = c.get_formatted_text()
-    assert "Awaiting" in html
+    assert "Waiting" in html
     assert "ACTIVE" in html
 
 
@@ -108,8 +108,8 @@ def test_transparent_with_history_lists_entries():
     c.scenario_time = 10
     c.explain("Pump 2 turned OFF.")
     html = c.get_formatted_text()
-    assert "Pump 2 turned OFF." in html
-    assert "Awaiting" not in html
+    assert "Pump 2 OFF." in html
+    assert "Waiting" not in html
 
 
 def test_opaque_hides_explanations_even_with_history():

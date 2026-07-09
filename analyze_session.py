@@ -2,7 +2,7 @@
 analyze_session.py  –  Post-process an OpenMATB session CSV.
 
 Usage:
-    python3 analyze_session.py <path_to_session_csv>
+    python3 analyze_session.py <path_to_session_csv_or_directory>
 
 No third-party packages required (stdlib only).
 """
@@ -37,11 +37,33 @@ def _mean_abs(values: list[float]) -> float:
     return sum(abs(v) for v in values) / len(values)
 
 
+def _safe_bool(value: str) -> bool | None:
+    normalized = str(value).strip().lower()
+    if normalized in {"true", "1"}:
+        return True
+    if normalized in {"false", "0"}:
+        return False
+    return None
+
+
+def _resolve_session_paths(path_str: str) -> list[Path]:
+    path = Path(path_str)
+    if not path.exists():
+        print(f"Error: file not found – {path_str}")
+        sys.exit(1)
+
+    if path.is_file():
+        return [path]
+
+    csv_paths = sorted(p for p in path.iterdir() if p.is_file() and p.suffix.lower() == ".csv")
+    if not csv_paths:
+        print(f"Error: no CSV files found in directory – {path_str}")
+        sys.exit(1)
+    return csv_paths
+
+
 def parse_session_file(file_path: str) -> None:
     p = Path(file_path)
-    if not p.exists():
-        print(f"Error: file not found – {file_path}")
-        sys.exit(1)
 
     print(f"Analyzing: {file_path}")
 
@@ -134,6 +156,38 @@ def parse_session_file(file_path: str) -> None:
             if addr and _safe_float(val) is not None:
                 surveys[addr] = val  # last value wins (final slider position)
 
+    # Copilot manipulation-check metrics
+    copilot_displayed_true = 0
+    copilot_displayed_false = 0
+    copilot_text_count = 0
+    for _t, r in valid_rows:
+        if r.get("module") == "copilot" and r.get("type") == "performance":
+            addr = r.get("address", "")
+            val = r.get("value", "")
+            if addr == "explanation_displayed":
+                displayed = _safe_bool(val)
+                if displayed is True:
+                    copilot_displayed_true += 1
+                elif displayed is False:
+                    copilot_displayed_false += 1
+            elif addr == "explanation_text":
+                copilot_text_count += 1
+
+    # Shared-control manual override counts
+    sysmon_manual_actions = 0
+    resman_manual_actions = 0
+    for _t, r in valid_rows:
+        if r.get("type") != "performance":
+            continue
+        module = r.get("module", "")
+        addr = r.get("address", "")
+        if module == "sysmon" and addr == "signal_detection":
+            # In this setup, key-based gauge responses are manual actions.
+            if r.get("value") in {"HIT", "FA"}:
+                sysmon_manual_actions += 1
+        elif module == "resman" and addr.endswith("_user_action"):
+            resman_manual_actions += 1
+
     # ─── Print results ───────────────────────────────────────────────────────
     total_bins = len(bins_data)
     proactive_bins = sum(1 for b in bins_data if b["status"] == "Proactive")
@@ -161,6 +215,17 @@ def parse_session_file(file_path: str) -> None:
 
     print()
     print(SEP)
+    print("          COPILOT / SHARED-CONTROL CHECKS")
+    print(SEP)
+    print(f"  Copilot explanations logged : {copilot_text_count}")
+    print(f"  explanation_displayed=True  : {copilot_displayed_true}")
+    print(f"  explanation_displayed=False : {copilot_displayed_false}")
+    print(f"  SysMon manual actions       : {sysmon_manual_actions}")
+    print(f"  ResMan manual actions       : {resman_manual_actions}")
+    print(SEP)
+    print()
+
+    print(SEP)
     print("          POST-EXPERIMENT SURVEY RESPONSES")
     print(SEP)
     if surveys:
@@ -174,7 +239,12 @@ def parse_session_file(file_path: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python3 analyze_session.py <path_to_session_csv>")
+        print("Usage: python3 analyze_session.py <path_to_session_csv_or_directory>")
         sys.exit(1)
-    parse_session_file(sys.argv[1])
+
+    session_paths = _resolve_session_paths(sys.argv[1])
+    for i, session_path in enumerate(session_paths):
+        if i > 0:
+            print("\n" + ("#" * 62) + "\n")
+        parse_session_file(str(session_path))
 

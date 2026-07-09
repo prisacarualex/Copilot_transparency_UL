@@ -124,6 +124,7 @@ _KEY_NAMES = {
 _pyglet_modules = [
     "pyglet",
     "pyglet.gl",
+    "pyglet.gl.lib",
     "pyglet.window",
     "pyglet.window.key",
     "pyglet.graphics",
@@ -146,6 +147,13 @@ _pyglet_modules = [
 for mod_name in _pyglet_modules:
     if mod_name not in sys.modules:
         sys.modules[mod_name] = _MockModule(mod_name)
+
+# Make pyglet.gl.lib.GLException available (used by core/widgets/abstractwidget.py)
+class GLException(Exception):
+    """Mock GLException for testing without OpenGL."""
+    pass
+
+sys.modules["pyglet.gl.lib"].GLException = GLException
 
 # Configure specific pyglet mock attributes
 

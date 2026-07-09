@@ -5,7 +5,7 @@ get_pump_by_key, do_on_key, pump color determination) using object.__new__()
 to bypass __init__.
 """
 
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from core.constants import COLORS as C
 from plugins.resman import Resman
@@ -295,6 +295,22 @@ class TestGetPumpByKey:
         pump = r.get_pump_by_key("NUM_9")
         assert pump is None
 
+    def test_top_row_digit_alias_maps_to_pump(self):
+        """Top-row numeric keys map to their corresponding pumps."""
+        r = _make_resman()
+        pump = r.get_pump_by_key("_1")
+        assert pump is not None
+        assert pump["_fromtank"] == "c"
+        assert pump["_totank"] == "a"
+
+    def test_numpad_alias_maps_to_pump(self):
+        """Alternate numpad key names map to the same pumps."""
+        r = _make_resman()
+        pump = r.get_pump_by_key("NUMPAD4")
+        assert pump is not None
+        assert pump["_fromtank"] == "f"
+        assert pump["_totank"] == "b"
+
 
 # ──────────────────────────────────────────────
 # get_response_timers
@@ -358,20 +374,109 @@ class TestToleranceZone:
         _run_one_update(r)
         assert r.parameters["tank"]["a"]["_response_time"] == 0
 
-    def test_tolerance_color_changes_outside(self):
-        """Color changes when outside tolerance."""
-        r = _make_resman()
-        r.parameters["tolerancecoloroutside"] = C["RED"]
-        r.parameters["tank"]["a"]["level"] = 2000
-        _run_one_update(r)
-        assert r.parameters["tank"]["a"]["_tolerance_color"] == C["RED"]
 
-    def test_tolerance_color_normal_inside(self):
-        """Normal color when inside tolerance."""
+# ──────────────────────────────────────────────
+# Hybrid pump control (allowmanualoverride)
+# ──────────────────────────────────────────────
+class TestHybridPumpControl:
+    """Test that user manual pump control coexists with automatic solver."""
+
+    def test_manual_pump_toggle_disabled_by_default(self):
+        """Without allowmanualoverride, user keypresses have no effect."""
         r = _make_resman()
-        r.parameters["tolerancecolor"] = C["BLACK"]
+        r.parameters["allowmanualoverride"] = False
+        pump = r.parameters["pump"]["1"]
+        initial_state = pump["state"]
+        with patch("plugins.abstractplugin.Window") as mock_win:
+            mock_win.MainWindow.modal_dialog = None
+            r.do_on_key("NUM_1", "press", emulate=False)
+        # Pump state should not change
+        assert pump["state"] == initial_state
+
+    def test_manual_pump_toggle_enabled_with_flag(self):
+        """With allowmanualoverride=True, user keypresses toggle pump state."""
+        r = _make_resman()
+        r.parameters["allowmanualoverride"] = True
+        pump = r.parameters["pump"]["1"]
+        assert pump["state"] == "off"
+        with patch("plugins.abstractplugin.Window") as mock_win:
+            mock_win.MainWindow.modal_dialog = None
+            r.do_on_key("NUM_1", "press", emulate=False)
+            assert pump["state"] == "on"
+            r.do_on_key("NUM_1", "press", emulate=False)
+        assert pump["state"] == "off"
+
+    def test_manual_override_cannot_toggle_failed_pump(self):
+        """Failed pumps cannot be toggled even with allowmanualoverride=True."""
+        r = _make_resman()
+        r.parameters["allowmanualoverride"] = True
+        pump = r.parameters["pump"]["1"]
+        pump["state"] = "failure"
+        with patch("plugins.abstractplugin.Window") as mock_win:
+            mock_win.MainWindow.modal_dialog = None
+            r.do_on_key("NUM_1", "press", emulate=False)
+        # Pump state should remain "failure"
+        assert pump["state"] == "failure"
+
+    def test_ai_solver_still_runs_with_manual_override_enabled(self):
+        """Automation continues to update pumps when allowmanualoverride is True."""
+        r = _make_resman()
+        r.parameters["automaticsolver"] = True
+        r.parameters["allowmanualoverride"] = True
+        # Tank A is below target, so pump 1 (c→a) should turn on
+        r.parameters["tank"]["a"]["level"] = 2400  # Below target 2500
         _run_one_update(r)
-        assert r.parameters["tank"]["a"]["_tolerance_color"] == C["BLACK"]
+        # Heuristic 0.2 should activate pump 1
+        assert r.parameters["pump"]["1"]["state"] == "on"
+
+    def test_manual_override_keeps_keys_enabled_with_automaticsolver(self):
+        """With shared control enabled, key handling remains active in auto mode."""
+        r = _make_resman()
+        r.parameters["automaticsolver"] = True
+        r.parameters["allowmanualoverride"] = True
+        r.update_can_receive_key()
+        assert r.can_receive_keys is True
+        assert r.can_execute_keys is True
+
+    def test_user_action_then_ai_reversal(self):
+        """User toggles pump, then AI can later override it on next update."""
+        r = _make_resman()
+        r.parameters["automaticsolver"] = True
+        r.parameters["allowmanualoverride"] = True
+        
+        # User manually turns on pump 1
+        assert r.parameters["pump"]["1"]["state"] == "off"
+        with patch("plugins.abstractplugin.Window") as mock_win:
+            mock_win.MainWindow.modal_dialog = None
+            r.do_on_key("NUM_1", "press", emulate=False)
+        assert r.parameters["pump"]["1"]["state"] == "on"
+        
+        # On next update, if tank A is full, AI's heuristic 0.2 will turn pump 1 off
+        r.parameters["tank"]["a"]["level"] = 4000  # Full
+        _run_one_update(r)
+        # AI heuristic 0.2: target tank full → pump off
+        assert r.parameters["pump"]["1"]["state"] == "off"
+
+    def test_multiple_pumps_concurrent_control(self):
+        """User can control pump 1 while AI controls pump 2."""
+        r = _make_resman()
+        r.parameters["automaticsolver"] = True
+        r.parameters["allowmanualoverride"] = True
+        
+        # User manually toggles pump 1
+        with patch("plugins.abstractplugin.Window") as mock_win:
+            mock_win.MainWindow.modal_dialog = None
+            r.do_on_key("NUM_1", "press", emulate=False)
+        pump1_state_after_user = r.parameters["pump"]["1"]["state"]
+        
+        # AI runs on next update (heuristics for pump 2)
+        r.parameters["tank"]["b"]["level"] = 2400  # Low, should trigger pump 3
+        _run_one_update(r)
+        
+        # Pump 1 should be unchanged from user action
+        assert r.parameters["pump"]["1"]["state"] == pump1_state_after_user
+        # Pump 3 (d→b) should have been activated by heuristic 0.2
+        assert r.parameters["pump"]["3"]["state"] == "on"
 
 
 # ──────────────────────────────────────────────

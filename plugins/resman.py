@@ -16,11 +16,48 @@ from core.window import Window
 from plugins.abstractplugin import AbstractPlugin
 
 
+PUMP_KEY_ALIASES: dict[str, str] = {
+    "_1": "NUM_1",
+    "_2": "NUM_2",
+    "_3": "NUM_3",
+    "_4": "NUM_4",
+    "_5": "NUM_5",
+    "_6": "NUM_6",
+    "_7": "NUM_7",
+    "_8": "NUM_8",
+    "1": "NUM_1",
+    "2": "NUM_2",
+    "3": "NUM_3",
+    "4": "NUM_4",
+    "5": "NUM_5",
+    "6": "NUM_6",
+    "7": "NUM_7",
+    "8": "NUM_8",
+    "NUMPAD1": "NUM_1",
+    "NUMPAD2": "NUM_2",
+    "NUMPAD3": "NUM_3",
+    "NUMPAD4": "NUM_4",
+    "NUMPAD5": "NUM_5",
+    "NUMPAD6": "NUM_6",
+    "NUMPAD7": "NUM_7",
+    "NUMPAD8": "NUM_8",
+    "KP_1": "NUM_1",
+    "KP_2": "NUM_2",
+    "KP_3": "NUM_3",
+    "KP_4": "NUM_4",
+    "KP_5": "NUM_5",
+    "KP_6": "NUM_6",
+    "KP_7": "NUM_7",
+    "KP_8": "NUM_8",
+}
+
+
 class Resman(AbstractPlugin):
     def __init__(self, label: str = "", taskplacement: str = "bottommid", taskupdatetime: int = 2000) -> None:
         super().__init__(_("Resources management"), taskplacement, taskupdatetime)
 
         self.validation_dict: dict[str, Callable[..., Any] | tuple[Callable[..., Any], list[str]]] = {
+            "allowmanualoverride": validation.is_boolean,
             "pumpcoloroff": validation.is_color,
             "pumpcoloron": validation.is_color,
             "pumpcolorfailure": validation.is_color,
@@ -86,9 +123,11 @@ class Resman(AbstractPlugin):
         }
 
         self.keys: set[str] = {"NUM_1", "NUM_2", "NUM_3", "NUM_4", "NUM_5", "NUM_6", "NUM_7", "NUM_8"}
+        self.keys.update(PUMP_KEY_ALIASES.keys())
 
         new_par: dict[str, Any] = dict(
             automaticsolver=False,
+            allowmanualoverride=False,
             displayautomationstate=True,
             pumpcoloroff=C["WHITE"],
             pumpcoloron=C["GREEN"],
@@ -389,14 +428,29 @@ class Resman(AbstractPlugin):
                 this_tank["widget"].set_tolerance_color(this_tank["_tolerance_color"])
 
     def get_pump_by_key(self, key: str) -> dict[str, Any] | None:
-        pump: list[dict[str, Any]] = [p for _, p in self.parameters["pump"].items() if p["key"] == key]
+        canonical_key: str = PUMP_KEY_ALIASES.get(key, key)
+        pump: list[dict[str, Any]] = [
+            p for _, p in self.parameters["pump"].items() if p["key"] in {key, canonical_key}
+        ]
         if len(pump) > 0:
             return pump[0]
 
-    def _explain_pump_change(self, pump_number: str, new_state: str, reason: str) -> None:
+    def _explain_pump_change(self, pump_number: str, new_state: str, reason: str, source: str = "ai") -> None:
+        """Explain a pump state change to the copilot panel.
+        
+        Args:
+            pump_number: The pump ID (e.g., "1", "2").
+            new_state: The new pump state (e.g., "on", "off").
+            reason: Human-readable explanation of why the change occurred.
+            source: Either "ai" (automatic solver) or "user" (manual intervention).
+        """
         copilot = getattr(Window.MainWindow, "plugins", {}).get("copilot")
         if copilot is not None:
-            text = f"Pump {pump_number} turned <b>{new_state.upper()}</b> ({reason})."
+            if source == "user":
+                prefix = "<i>Manual:</i>"
+            else:
+                prefix = ""
+            text = f"{prefix} Pump {pump_number} turned <b>{new_state.upper()}</b> ({reason}).".strip()
             copilot.explain(text)
 
     def do_on_key(self, key: str, state: str, emulate: bool) -> None:
@@ -409,4 +463,26 @@ class Resman(AbstractPlugin):
             if pump_key is None:
                 return
             if pump_key["state"] != "failure":
-                pump_key["state"] = "on" if pump_key["state"] == "off" else "off"
+                # User can toggle pumps only if allowmanualoverride is enabled
+                if self.parameters.get("allowmanualoverride", False):
+                    prev_state = pump_key["state"]
+                    pump_key["state"] = "on" if pump_key["state"] == "off" else "off"
+                    new_state = pump_key["state"]
+                    
+                    # Find pump number for logging
+                    pump_number = None
+                    for pn, pv in self.parameters["pump"].items():
+                        if pv is pump_key:
+                            pump_number = pn
+                            break
+                    
+                    # Explain user action to the copilot panel
+                    if prev_state != new_state and pump_number is not None:
+                        to_tank = pump_key["_totank"].upper()
+                        from_tank = pump_key["_fromtank"].upper()
+                        reason = f"manual intervention — transfer from Tank {from_tank} to Tank {to_tank}"
+                        self._explain_pump_change(pump_number, new_state, reason, source="user")
+                    
+                    # Log user action
+                    if pump_number is not None:
+                        self.log_performance(f"pump_{pump_number}_user_action", new_state)

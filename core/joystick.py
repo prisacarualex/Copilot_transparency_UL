@@ -89,8 +89,18 @@ class Joystick:
 
 joykey: dict[str, bool] | None = None
 joystick: Joystick | None = None
+
+
+def get_available_joysticks() -> list[Any]:
+    """Return connected joysticks without failing on headless or device-less hosts."""
+    try:
+        return pyglet.input.get_joysticks()
+    except (FileNotFoundError, OSError):
+        return []
+
+
 # Search and find a joystick
-joysticks: list[Any] = pyglet.input.get_joysticks()
+joysticks: list[Any] = get_available_joysticks()
 
 if not REPLAY_MODE:
     if len(joysticks) > 0:

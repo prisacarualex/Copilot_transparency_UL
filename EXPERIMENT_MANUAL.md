@@ -41,7 +41,7 @@ Select one in two ways:
 python main.py
 ```
 
-> **Language:** [config.ini](config.ini) ships with `language=fr_FR`. The
+> **Language:** [config.ini](config.ini) ships with `language=en_EN`. The
 > built-in questionnaires used by the scenario are the English versions
 > (`nasatlx_en.txt`, `trust_en.txt`). For a fully English session set
 > `language=en_EN`.
@@ -82,20 +82,23 @@ python main.py
 
 Four MATB tasks run at once, plus the **Co-pilot** panel (top-right).
 
-**Key point about this study:** in both conditions the **System Monitoring**
-and **Resource Management** tasks are handled by the *automatic solver* — this
-*is* the "AI co-pilot." The AI keeps the tanks and gauges healthy on its own.
-The participant may **optionally override the AI on the gauges** (press the
-failing gauge's `F1`–`F6` key to fix it before the AI does — *shared control*),
-but the tanks remain fully AI-managed. What changes between conditions is only
-whether the co-pilot **explains** those automated actions.
+**Key point about this study:** in both conditions the **System Monitoring**,
+**Communications**, and **Resource Management** tasks are handled by the
+automatic solver. The manipulation is only the co-pilot transparency panel
+(`transparent` vs `opaque`).
+
+The participant can still intervene manually in shared-control channels:
+- **System Monitoring override** (`F1`–`F6`) is enabled.
+- **Resource Management pump override** is enabled (`NUM_1`–`NUM_8`, with key aliases).
+- **Tracking** remains manual (`W A S D`).
 
 ---
 
 ## 4. What the participant actively does
 
-Because the co-pilot automates System Monitoring and Resource Management, the
-participant's hands-on tasks are **Tracking** and **Communications**, while they
+Because the co-pilot automates System Monitoring, Communications, and Resource
+Management, the participant's primary hands-on task is **Tracking**, with
+optional shared-control interventions in SysMon and ResMan, while they
 **observe** the co-pilot panel.
 
 ### 4.1 Tracking (keyboard: W A S D)
@@ -119,9 +122,11 @@ operator may **beat the AI to a fix** by pressing the failing gauge's key
 during the short window before the AI acts. This is *shared human-AI control*
 and is identical across both conditions.
 
-### 4.2 Communications (keyboard)
-Listen for radio calls. When a call addresses **your own call-sign**, tune the
-correct radio and frequency:
+### 4.2 Communications (automated in current setup)
+Communications radio prompts are active, but radio handling is automated by the
+AI co-pilot in the current experiment scenarios.
+
+Manual communication keys remain available for non-automated pilot scenarios:
 
 | Action                       | Key     |
 |------------------------------|---------|
@@ -145,18 +150,14 @@ recorded to the log in **both** conditions, but only **shown** in the
 Transparent condition.
 
 ### Transparent condition
-The panel shows a running, time-stamped log of the **last three** co-pilot
-actions **with the reason**, e.g.:
+The panel shows a running, time-stamped log of the **last 10** co-pilot
+actions. Text is simplified to reduce visual load and may truncate long
+messages. Example:
 
 ```
-[00:47] Pump 2 turned ON.
-        Reason: Tank A level (2180 units) is low — filling from Tank E
-
+[00:47] Pump 2 ON.
 [01:05] Indicator F1 reset to normal.
-        Reason: Re-centered Scale F1 pointer to nominal zone.
-
-[01:22] Pump 4 turned OFF.
-        Reason: Tank B level (2760 units) is sufficient — halting Pump 4
+[01:22] Manual: Pump 1 ON.
 ```
 
 ### Opaque condition
@@ -181,6 +182,13 @@ Every co-pilot action writes two performance rows to the session CSV:
 - `copilot / explanation_text` — the plain-text action + reason
 - `copilot / explanation_displayed` — `True` (transparent) or `False` (opaque)
 
+Additional current-study logging used for classification and behavior checks:
+- `track / center_deviation`, `track / cursor_in_target`, `track / response_time`
+- `resman / a_deviation`, `resman / b_deviation`, `resman / a_in_tolerance`, `resman / b_in_tolerance`
+- `resman / pump_<n>_user_action` (manual pump overrides)
+- `sysmon / signal_detection`, `sysmon / response_time`, `sysmon / name`
+- `communications / sdt_value`, `communications / response_time`, radio/frequency correctness fields
+
 This lets you verify the manipulation and segment the session into time windows
 for the Proactive/Reactive classification.
 
@@ -188,9 +196,13 @@ for the Proactive/Reactive classification.
 
 ## 6. The Resource Management (tank) task — how it works and how to control it
 
-In the **experiment scenarios the tanks are automated**, so a participant does
-not calibrate them. This section is for **understanding the task** and for
-**testing/piloting** it yourself in a manual scenario.
+In the **experiment scenarios the tanks are automated**, but manual pump
+override is enabled for shared-control behavior. Participants may intervene
+using pump keys while the AI solver continues to run.
+
+For the current transparency-study scenarios, **Pump 7 (A -> B)** is
+scenario-overridden to **1500 units/min** so that manual transfer from Tank A
+to Tank B has a clear visible effect after the **Pump 4 failure** anomaly.
 
 ### 6.1 The goal
 Keep the two **target tanks, A and B**, near their target level of **2500**
@@ -216,7 +228,7 @@ continuously **drains 800 units/minute**, so they must be refilled.
 | 4    | `NUM_4` | F → B     | 600  |
 | 5    | `NUM_5` | E → C     | 600  |
 | 6    | `NUM_6` | F → D     | 600  |
-| 7    | `NUM_7` | A → B     | 400  |
+| 7    | `NUM_7` | A → B     | 400  (1500 in the transparency-study scenarios) |
 | 8    | `NUM_8` | B → A     | 400  |
 
 ### 6.3 How you react / calibrate (manual mode)
@@ -240,12 +252,12 @@ continuously **drains 800 units/minute**, so they must be refilled.
 The aim is to keep both A and B inside the green band as much as possible;
 time spent outside the band is what the task scores against you.
 
-### 6.4 Trying it manually (optional pilot)
-The shipped experiment runs the tanks automatically. To *practice* the manual
-tank task, run a scenario where Resource Management is **not** automated — for
-example [includes/scenarios/basic.txt](includes/scenarios/basic.txt) or
-[includes/scenarios/default.txt](includes/scenarios/default.txt) — and operate
-the pumps with the keypad as above.
+### 6.4 Shared-control behavior (current experiment)
+The shipped transparency scenarios run ResMan in hybrid mode:
+- AI pumps are active (`automaticsolver=True`)
+- Manual pump input is enabled (`allowmanualoverride=True`)
+- User toggles are immediate; AI may revise pump states on the next update cycle
+- Failed pumps cannot be manually toggled
 
 ---
 
@@ -275,8 +287,8 @@ Use the **same** script for both groups, except the bracketed co-pilot line.
 > select the right radio with Up/Down, tune the frequency with Left/Right, and
 > press Enter; ignore calls for other call-signs.
 >
-> An **AI co-pilot** automatically manages the system gauges and the fuel
-> tanks for you. You do not control those.
+> An **AI co-pilot** automatically manages gauges, radios, and fuel pumps.
+> You always control Tracking, and you may also intervene on gauges/pumps.
 >
 > *[Transparent group:]* The co-pilot will **explain each action it takes** in
 > the top-right panel.
@@ -301,13 +313,31 @@ these are your control variables.
   classify each window as **Proactive** or **Reactive** from the performance
   indicators, then compute the **% of time Proactive** per participant.
 
+### 9.1 Evaluation scripts (checked)
+- [analyze_session.py](analyze_session.py): single-session report.
+  Uses 30s bins and classifies mode from:
+  - Tracking RMSE based on `track / center_deviation`
+  - ResMan deviation based on `resman / a_deviation` and `resman / b_deviation`
+  Also reports survey sliders and now prints copilot manipulation-check counts
+  (`explanation_displayed`, `explanation_text`) plus shared-control action counts.
+- [visualize_results.py](visualize_results.py): multi-session aggregation figure
+  (`sessions/analysis.png`) with condition split, proactive %, tracking/resman trends,
+  and SysMon signal detection metrics.
+
+### 9.2 Research framing (current proposal)
+- **IV:** AI transparency (`transparent` vs `opaque`)
+- **DV (primary):** proportion of time in Proactive vs Reactive control mode
+- **Control strategy proxy:** 30s-bin classification using tracking + resman metrics
+- **Manipulation check:** `copilot / explanation_displayed` and explanation logs
+- **Hypothesis:** transparent condition increases time in Proactive mode
+
 ---
 
 ## 10. Experimenter checklist
 
 - [ ] Keyboard connected; `W A S D` move the tracking cursor.
 - [ ] Correct scenario selected for the assigned condition.
-- [ ] Language set as intended (`fr_FR` default, or `en_EN` for English UI).
+- [ ] Language set as intended (`en_EN` current default).
 - [ ] Audio working (radio calls audible).
 - [ ] Briefing read identically; only the co-pilot sentence differs.
 - [ ] Session CSV saved and labelled with participant ID + condition.

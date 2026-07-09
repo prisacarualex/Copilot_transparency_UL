@@ -13,7 +13,12 @@
 
 # Activate automatic solvers (co-pilot team-member)
 0:00:00;sysmon;automaticsolver;True
+0:00:00;communications;automaticsolver;True
 0:00:00;resman;automaticsolver;True
+
+# Enable hybrid pump control for this scenario
+0:00:00;resman;allowmanualoverride;True
+0:00:00;resman;pump-7-flow;1500
 
 # No joystick: steer the tracking cursor with the keyboard (W/A/S/D)
 0:00:00;track;keyboardcontrol;True
@@ -27,6 +32,12 @@
 0:00:45;sysmon;lights-1-failure;True
 0:01:20;sysmon;scales-2-failure;True
 0:01:50;sysmon;lights-2-failure;True
+
+# Sudden anomaly: tank B leaks suddenly at 2:00
+0:02:00;resman;tank-b-lossperminute;1500
+0:02:00;resman;pump-4-state;failure
+
+# Continue system monitoring events
 0:02:30;sysmon;scales-3-failure;True
 0:03:00;sysmon;lights-1-failure;True
 0:03:40;sysmon;scales-4-failure;True

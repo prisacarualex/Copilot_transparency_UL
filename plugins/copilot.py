@@ -24,7 +24,7 @@ class Copilot(AbstractPlugin):
 
         new_par: dict[str, Any] = dict(
             transparency="transparent",
-            maxvisiblemessages=6,
+            maxvisiblemessages=10,
         )
         self.parameters.update(new_par)
         self.history: list[str] = []
@@ -33,37 +33,43 @@ class Copilot(AbstractPlugin):
     def create_widgets(self) -> None:
         super().create_widgets()
 
+        # Keep content below the plugin title strip when titles are enabled.
+        panel_container = self.task_container
+
         # Visual frame for copilot explanations
         self.add_widget(
             "border",
             Frame,
-            container=self.task_container,
+            container=panel_container,
             border_thickness=0.01,
             border_color=C["DARKGREY"],
-            fill_color=C["WHITE"],
+            fill_color=C["BACKGROUND"],
+            draw_order=self.m_draw + 1,
         )
 
         # HTML label to display history and status.
-        # anchor_y="top" + y=0.97 means text flows downward from near the top
-        # of the container, so it stays visible regardless of message count.
+        # SimpleHTML expects normalized coordinates (0..1) relative to the container.
+        # Keep the label near the top so messages flow downward inside the panel.
         self.add_widget(
             "text",
             SimpleHTML,
-            container=self.task_container,
+            container=panel_container,
             text=self.get_formatted_text(),
-            x=0.5,
-            y=0.97,
-            wrap_width=0.9,
+            x=0.54,
+            y=0.98,
+            wrap_width=0.92,
             anchor_x="center",
             anchor_y="top",
+            draw_order=self.m_draw + 2,
         )
 
     def explain(self, text: str) -> None:
         # Prepend the scenario time in MM:SS format
         m, s = divmod(int(self.scenario_time), 60)
         timestamp = f"{m:02d}:{s:02d}"
-        self.message_index = getattr(self, "message_index", 0) + 1
-        entry = f"<b>#{self.message_index:03d} [{timestamp}]</b> {text}"
+        plain = self._strip_html(text)
+        simple = self._simplify_text(plain)
+        entry = f"[{timestamp}] {simple}"
 
         self.history.append(entry)
         max_visible = int(self.parameters.get("maxvisiblemessages", 3))
@@ -77,7 +83,6 @@ class Copilot(AbstractPlugin):
         displayed = self.parameters["transparency"] == "transparent"
         logger = getattr(self, "logger", None)
         if logger is not None:
-            plain = self._strip_html(text)
             logger.log_performance("copilot", "explanation_displayed", displayed)
             logger.log_performance("copilot", "explanation_text", plain)
 
@@ -94,20 +99,36 @@ class Copilot(AbstractPlugin):
         plain = plain.replace("&nbsp;", " ")
         return re.sub(r"\s+", " ", plain).strip()
 
+    @staticmethod
+    def _simplify_text(text: str) -> str:
+        """Shorten and simplify explanation text for on-screen readability."""
+        simplified = text
+        simplified = simplified.replace("manual intervention", "manual")
+        simplified = simplified.replace("automatic solver", "auto")
+        simplified = simplified.replace("transfer from Tank ", "")
+        simplified = simplified.replace(" to Tank ", " -> ")
+        simplified = simplified.replace("turned ", "")
+        simplified = re.sub(r"\s*[—-]\s*", " - ", simplified)
+        simplified = re.sub(r"\s+", " ", simplified).strip()
+
+        if len(simplified) > 78:
+            simplified = simplified[:75].rstrip() + "..."
+        return simplified
+
     def get_formatted_text(self) -> str:
         if self.parameters["transparency"] == "opaque":
             # Neutral panel: identical visual weight to the transparent panel,
             # but content-free. It must NOT reveal that explanations exist and
             # are being withheld, otherwise the manipulation would differ by
             # meta-awareness rather than by explanation content alone.
-            return "<center><h2>Co-pilot Status: ACTIVE</h2><p>Monitoring systems...</p></center>"
+            return "<center><font size=4><b>Co-pilot: ACTIVE</b><br>Monitoring...</font></center>"
 
         if not self.history:
-            return "<center><h2>Co-pilot Status: ACTIVE</h2><p>Awaiting automated actions...</p></center>"
+            return "<center><font size=4><b>Co-pilot: ACTIVE</b><br>Waiting for actions...</font></center>"
 
         # Display history items separated by spacing
         items_html = "<br>".join(self.history)
-        return f"<p>{items_html}</p>"
+        return f"<font size=4>{items_html}</font>"
 
     def refresh_widgets(self) -> bool:
         if not super().refresh_widgets():

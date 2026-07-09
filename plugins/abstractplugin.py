@@ -115,7 +115,9 @@ class AbstractPlugin:
                 widget.hide()
 
         elif self.parameters["taskplacement"] != "invisible":
-            self.get_widget("task_title").hide()
+            task_title = self.get_widget("task_title")
+            if task_title is not None:
+                task_title.hide()
 
             # Resman case (manage status if relevant)
             if self.get_widget("status_title") is not None:
@@ -190,6 +192,17 @@ class AbstractPlugin:
             self.can_execute_keys = True
         else:
             self.can_execute_keys = self.can_receive_keys
+
+        # Shared human-AI control: when a plugin explicitly allows manual override,
+        # keep keyboard input enabled even while automaticsolver is active.
+        if (
+            not REPLAY_MODE
+            and self.parameters.get("allowmanualoverride", False)
+            and not self.is_paused()
+            and self.is_visible()
+        ):
+            self.can_receive_keys = True
+            self.can_execute_keys = True
 
     def compute_next_plugin_state(self) -> bool:
         if not self.scenario_time >= self.next_refresh_time or self.is_paused():
