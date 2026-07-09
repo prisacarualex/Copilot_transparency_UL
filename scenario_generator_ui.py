@@ -26,7 +26,7 @@ from pyglet.window import key as winkey, mouse
 # ── i18n bootstrap (same as scenario_generator.py) ──────────────────────────
 
 _cfg = configparser.ConfigParser()
-_cfg.read("config.ini")
+_cfg.read("config.ini", encoding="utf-8")
 _locale_path = Path(".", "locales")
 _lang = gettext.translation("openmatb", _locale_path, [_cfg["Openmatb"]["language"]])
 _lang.install()

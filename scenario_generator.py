@@ -13,7 +13,7 @@ from typing import Any
 
 # Read the configuration file
 config: configparser.ConfigParser = configparser.ConfigParser()
-config.read("config.ini")
+config.read("config.ini", encoding="utf-8")
 
 # Read and install the specified language iso
 # The LOCALE_PATH constant can't be set into constants.py because
