@@ -36,6 +36,7 @@ python3 -m nuitka --standalone --macos-create-app-bundle \
   --include-data-file="config.ini"="config.ini" \
   --include-data-file="LICENSE"="LICENSE" \
   --include-data-file="README.md"="README.md" \
+  --include-data-file="VERSION"="VERSION" \
   --output-dir=build_macos \
   main.py
 ```
