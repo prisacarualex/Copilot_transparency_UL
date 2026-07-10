@@ -152,11 +152,15 @@ Transparent condition.
 ### Transparent condition
 The panel shows a running, time-stamped log of the **last 10** co-pilot
 actions. Text is simplified to reduce visual load and may truncate long
-messages. Example:
+messages. The panel uses a monospace font for cross-platform consistency and
+includes extra spacing between entries for improved readability on all
+displays. Example:
 
 ```
 [00:47] Pump 2 ON.
+
 [01:05] Indicator F1 reset to normal.
+
 [01:22] Manual: Pump 1 ON.
 ```
 
@@ -333,7 +337,29 @@ these are your control variables.
 
 ---
 
-## 10. Experimenter checklist
+## 10. Technical notes: Co-pilot panel rendering robustness
+
+The co-pilot explanation panel was optimized for reliable cross-platform display:
+
+- **Font:** Monospace (Courier New with fallback) for consistent rendering across
+  Windows, macOS, and Linux systems and different monitors.
+- **Layout:** Position adjusted (x=0.50, y=0.95, wrap_width=0.88) with generous
+  padding to prevent text clipping on different display resolutions.
+- **Spacing:** Double line breaks between entries (`<br><br>`) improve
+  readability and robustness against DPI/font-size rendering variations.
+- **Size:** Font size 4 (~18pt in pyglet HTML) is the reference size used
+  throughout OpenMATB for consistent system-wide rendering.
+
+If text appears misaligned or truncated on any particular system:
+1. Ensure the display refresh rate and scaling settings are consistent across
+   test computers.
+2. Check the window is not minimized or partially occluded.
+3. If needed, adjust `wrap_width=` in [plugins/copilot.py](plugins/copilot.py)
+   line ~55 (reduce to ~0.85 if text is still clipping).
+
+---
+
+## 11. Experimenter checklist
 
 - [ ] Keyboard connected; `W A S D` move the tracking cursor.
 - [ ] Correct scenario selected for the assigned condition.

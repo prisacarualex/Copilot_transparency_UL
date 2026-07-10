@@ -49,15 +49,16 @@ class Copilot(AbstractPlugin):
 
         # HTML label to display history and status.
         # SimpleHTML expects normalized coordinates (0..1) relative to the container.
-        # Keep the label near the top so messages flow downward inside the panel.
+        # Positioned with generous padding and wrap for robustness across systems.
+        # Font size uses pyglet HTML size 4 (~18pt) for cross-platform consistency.
         self.add_widget(
             "text",
             SimpleHTML,
             container=panel_container,
             text=self.get_formatted_text(),
-            x=0.54,
-            y=0.98,
-            wrap_width=0.92,
+            x=0.50,
+            y=0.95,
+            wrap_width=0.88,
             anchor_x="center",
             anchor_y="top",
             draw_order=self.m_draw + 2,
@@ -116,19 +117,25 @@ class Copilot(AbstractPlugin):
         return simplified
 
     def get_formatted_text(self) -> str:
+        # Font size 4 in pyglet HTML is approximately 18pt and reasonably consistent across systems.
+        # Use explicit line-height spacing via line breaks for better readability.
+        font_tag = '<font size="4" face="Courier New, monospace">'
+        close_font = "</font>"
+
         if self.parameters["transparency"] == "opaque":
             # Neutral panel: identical visual weight to the transparent panel,
             # but content-free. It must NOT reveal that explanations exist and
             # are being withheld, otherwise the manipulation would differ by
             # meta-awareness rather than by explanation content alone.
-            return "<center><font size=4><b>Co-pilot: ACTIVE</b><br>Monitoring...</font></center>"
+            return f"<center><b>{font_tag}Co-pilot: ACTIVE</b><br>Monitoring...{close_font}</center>"
 
         if not self.history:
-            return "<center><font size=4><b>Co-pilot: ACTIVE</b><br>Waiting for actions...</font></center>"
+            return f"<center><b>{font_tag}Co-pilot: ACTIVE</b><br>Waiting for actions...{close_font}</center>"
 
-        # Display history items separated by spacing
-        items_html = "<br>".join(self.history)
-        return f"<font size=4>{items_html}</font>"
+        # Display history items with extra spacing for robustness and readability.
+        # Monospace font ensures consistent column alignment across systems.
+        items_html = "<br><br>".join(self.history)
+        return f"<p align=\"center\">{font_tag}{items_html}{close_font}</p>"
 
     def refresh_widgets(self) -> bool:
         if not super().refresh_widgets():
