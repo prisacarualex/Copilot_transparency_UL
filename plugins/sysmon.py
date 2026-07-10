@@ -110,19 +110,22 @@ class Sysmon(AbstractPlugin):
     def create_widgets(self) -> None:
         super().create_widgets()
         # Widgets coordinates (the left l coordinate is variable)
-        scale_w: float = self.task_container.w * 0.1
+        layout_l: float = self.task_container.l + self.task_container.w * 0.02
+        layout_w: float = self.task_container.w * 0.76
+
+        scale_w: float = layout_w * 0.085
         scale_b: float = self.task_container.b + self.task_container.h * 0.15
         scale_h: float = self.task_container.h * 0.5
 
-        light_w: float = self.task_container.w * 0.4
+        light_w: float = layout_w * 0.34
         light_b: float = self.task_container.b + self.task_container.h * 0.75
-        light_h: float = self.task_container.h * 0.15
+        light_h: float = self.task_container.h * 0.13
 
         for scale_n, scale in self.parameters["scales"].items():
             scale_l: float = (
-                self.task_container.l
-                + (self.task_container.w / 4) * (int(scale_n) - 1)
-                + self.task_container.w / 8
+                layout_l
+                + (layout_w / 4) * (int(scale_n) - 1)
+                + layout_w / 8
                 - scale_w / 2
             )
             scale_container: Container = Container(f"scale_{scale_n}", scale_l, scale_b, scale_w, scale_h)
@@ -137,9 +140,9 @@ class Sysmon(AbstractPlugin):
 
         for light_n, light in self.parameters["lights"].items():
             light_l: float = (
-                self.task_container.l
-                + (self.task_container.w / 2) * (int(light_n) - 1)
-                + self.task_container.w / 4
+                layout_l
+                + (layout_w / 2) * (int(light_n) - 1)
+                + layout_w / 4
                 - light_w / 2
             )
             light_container: Container = Container(f"light_{light_n}", light_l, light_b, light_w, light_h)

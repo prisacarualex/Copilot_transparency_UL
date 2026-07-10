@@ -154,12 +154,22 @@ class Communications(AbstractPlugin):
 
     def create_widgets(self) -> None:
         super().create_widgets()
+
+        # Keep communications content compact to reduce occupied panel area.
+        callsign_y = 0.87
+        first_radio_y = 0.66
+        radio_step = 0.1
+        radio_height = 0.07
+        content_left = self.task_container.l + self.task_container.w * 0.03
+        content_width = self.task_container.w * 0.74
+
         self.add_widget(
             "callsign",
             Simpletext,
             container=self.task_container,
             text=_("Callsign \t\t %s") % self.parameters["owncallsign"],
-            y=0.9,
+            x=0.4,
+            y=callsign_y,
         )
 
         active_index: int = randint(0, len(self.parameters["radios"]) - 1, self.alias, self.scenario_time)
@@ -168,10 +178,10 @@ class Communications(AbstractPlugin):
             # Compute radio container
             radio_container: Container = Container(
                 radio["name"],
-                self.task_container.l,
-                self.task_container.b + self.task_container.h * (0.7 - 0.13 * pos),
-                self.task_container.w,
-                self.task_container.h * 0.1,
+                content_left,
+                self.task_container.b + self.task_container.h * (first_radio_y - radio_step * pos),
+                content_width,
+                self.task_container.h * radio_height,
             )
 
             radio["widget"] = self.add_widget(
@@ -270,6 +280,9 @@ class Communications(AbstractPlugin):
             self.player: Any = Player()
             self.player.queue(sound_group)
             self.player.play()
+            self.log_performance("radio_prompt_onset_time", self.scenario_time)
+            self.log_performance("radio_prompt_radio", radio_name)
+            self.log_performance("radio_prompt_destination", destination)
         except Exception:
             self.logger.log_manual_entry("Audio prompt playback failed")
 

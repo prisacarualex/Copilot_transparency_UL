@@ -108,6 +108,7 @@ class Window(Window):
         MATB_container: Container = self.get_container("fullscreen")
         l, b, w, h = MATB_container.get_lbwh()
         container_title_h: float = PLUGIN_TITLE_HEIGHT_PROPORTION / 2
+        bottom_row_upshift: float = h * 0.04
         program = get_program()
         indices = polygon_indices(4)
 
@@ -147,13 +148,13 @@ class Window(Window):
                 "f",
                 (
                     l,
-                    b + h / 2,
+                    b + h / 2 + bottom_row_upshift,
                     l + w,
-                    b + h / 2,
+                    b + h / 2 + bottom_row_upshift,
                     l + w,
-                    b + h * (0.5 - container_title_h),
+                    b + h * (0.5 - container_title_h) + bottom_row_upshift,
                     0,
-                    b + h * (0.5 - container_title_h),
+                    b + h * (0.5 - container_title_h) + bottom_row_upshift,
                 ),
             ),
             colors=("Bn", C["BLACK"] * 4),
@@ -218,6 +219,8 @@ class Window(Window):
 
         # Horizontal bound
         y1: float = b + h / 2
+        bottom_row_upshift: float = h * 0.04
+        bottom_b: float = b + bottom_row_upshift
 
         return [
             Container("invisible", 0, 0, 0, 0),
@@ -225,9 +228,9 @@ class Window(Window):
             Container("topleft", 0, y1, x1, h / 2),
             Container("topmid", x1, y1, x2 - x1, h / 2),
             Container("topright", x2, y1, w - x2, h / 2),
-            Container("bottomleft", 0, b, x3, h / 2),
-            Container("bottommid", x3, b, x4 - x3, h / 2),
-            Container("bottomright", x4, b, w - x4, h / 2),
+            Container("bottomleft", 0, bottom_b, x3, h / 2),
+            Container("bottommid", x3, bottom_b, x4 - x3, h / 2),
+            Container("bottomright", x4, bottom_b, w - x4, h / 2),
             Container("mediastrip", 0, 0, self._width * (1 + mar), b),
             Container("inputstrip", w, b, self._width * mar, h),
         ]

@@ -1,0 +1,800 @@
+logtime,scenario_time,type,module,address,value
+2866.660722,0,version,,,1.4.5
+2866.661233,0,scenario_path,,,includes/scenarios/transparency_transparent.txt
+2866.661687,0,seed_value,communications,,28
+2866.661703,0,seed_output,communications,,DXE892
+2866.661769,0,seed_value,communications,,30
+2866.661776,0,seed_output,communications,,RZJ909
+2866.661818,0,seed_value,communications,,31
+2866.661824,0,seed_output,communications,,APD620
+2866.661868,0,seed_value,communications,,33
+2866.661874,0,seed_output,communications,,SFU347
+2866.661916,0,seed_value,communications,,35
+2866.661921,0,seed_output,communications,,RKY252
+2866.661961,0,seed_value,communications,,36
+2866.661966,0,seed_output,communications,,KBA410
+2866.662008,0,seed_value,communications,,38
+2866.662013,0,seed_output,communications,,UNN115
+2866.66205,0,seed_value,communications,,39
+2866.662055,0,seed_output,communications,,GIM033
+2866.662092,0,seed_value,communications,,40
+2866.662097,0,seed_output,communications,,OSQ034
+2866.662136,0,seed_value,communications,,42
+2866.662141,0,seed_output,communications,,UDA433
+2866.662177,0,seed_value,communications,,43
+2866.662182,0,seed_output,communications,,BJW275
+2866.6622,0,seed_value,communications,,26
+2866.662204,0,seed_output,communications,,129.671447
+2866.662216,0,seed_value,communications,,27
+2866.662221,0,seed_output,communications,,126.806419
+2866.662231,0,seed_value,communications,,28
+2866.662235,0,seed_output,communications,,111.275758
+2866.662244,0,seed_value,communications,,29
+2866.662248,0,seed_output,communications,,123.895453
+2867.701489,0,dialog,,,OpenMATB end
+2867.727341,0.000281,aoi,sysmon,foreground,"(0, 1140.0, 576, 600.0)"
+2867.727383,0.000281,aoi,sysmon,overdue,"(0, 1140.0, 576, 600.0)"
+2867.741679,0.000281,aoi,sysmon,task_title,"(0, 1200.0, 576, 1140.0)"
+2867.741843,0.000281,aoi,sysmon,automode,"(244.8, 658.5, 331.2, 628.5)"
+2867.743487,0.000281,aoi,sysmon,scale1,"(47.6352, 951.0, 84.84479999999999, 681.0)"
+2867.745103,0.000281,aoi,sysmon,scale2,"(157.0752, 951.0, 194.2848, 681.0)"
+2867.74546,0.000281,aoi,sysmon,scale3,"(266.5152, 951.0, 303.7248, 681.0)"
+2867.747178,0.000281,aoi,sysmon,scale4,"(375.95519999999993, 951.0, 413.16479999999996, 681.0)"
+2867.74873,0.000281,aoi,sysmon,light1,"(46.54079999999999, 1075.2, 195.3792, 1005.0)"
+2867.750762,0.000281,aoi,sysmon,light2,"(265.42080000000004, 1075.2, 414.2592000000001, 1005.0)"
+2867.750795,0.000281,parameter,sysmon,title,System monitoring
+2867.750803,0.000281,parameter,sysmon,taskplacement,topleft
+2867.750808,0.000281,parameter,sysmon,taskupdatetime,200
+2867.750815,0.000281,parameter,sysmon,taskfeedback-overdue-active,0
+2867.750822,0.000281,parameter,sysmon,taskfeedback-overdue-color,"(241, 100, 100, 255)"
+2867.750827,0.000281,parameter,sysmon,taskfeedback-overdue-delayms,2000
+2867.750832,0.000281,parameter,sysmon,taskfeedback-overdue-blinkdurationms,1000
+2867.750837,0.000281,parameter,sysmon,taskfeedback-overdue-_nexttoggletime,0
+2867.750842,0.000281,parameter,sysmon,taskfeedback-overdue-_is_visible,0
+2867.750848,0.000281,parameter,sysmon,taskfeedback-overdue-widget,<core.widgets.frame.Frame object at 0x7e47f00f6050>
+2867.750856,0.000281,parameter,sysmon,alerttimeout,10000
+2867.750861,0.000281,parameter,sysmon,automaticsolver,0
+2867.750866,0.000281,parameter,sysmon,automaticsolverdelay,1000
+2867.75087,0.000281,parameter,sysmon,displayautomationstate,1
+2867.750875,0.000281,parameter,sysmon,allowanykey,0
+2867.750879,0.000281,parameter,sysmon,allowmanualoverride,0
+2867.750884,0.000281,parameter,sysmon,feedbackduration,1500
+2867.750889,0.000281,parameter,sysmon,feedbacks-positive-active,1
+2867.750893,0.000281,parameter,sysmon,feedbacks-positive-color,"(142, 219, 176, 255)"
+2867.750899,0.000281,parameter,sysmon,feedbacks-negative-active,1
+2867.750904,0.000281,parameter,sysmon,feedbacks-negative-color,"(241, 100, 100, 255)"
+2867.750909,0.000281,parameter,sysmon,lights-1-name,F5
+2867.750914,0.000281,parameter,sysmon,lights-1-failure,0
+2867.750918,0.000281,parameter,sysmon,lights-1-default,on
+2867.750922,0.000281,parameter,sysmon,lights-1-oncolor,"(142, 219, 176, 255)"
+2867.750927,0.000281,parameter,sysmon,lights-1-key,F5
+2867.750932,0.000281,parameter,sysmon,lights-1-on,1
+2867.750936,0.000281,parameter,sysmon,lights-1-_failuretimer,
+2867.750941,0.000281,parameter,sysmon,lights-1-_onfailure,0
+2867.750945,0.000281,parameter,sysmon,lights-1-_milliresponsetime,0
+2867.750952,0.000281,parameter,sysmon,lights-1-_freezetimer,
+2867.750957,0.000281,parameter,sysmon,lights-1-widget,<core.widgets.light.Light object at 0x7e47f00b5ae0>
+2867.750962,0.000281,parameter,sysmon,lights-2-name,F6
+2867.750967,0.000281,parameter,sysmon,lights-2-failure,0
+2867.750971,0.000281,parameter,sysmon,lights-2-default,off
+2867.750976,0.000281,parameter,sysmon,lights-2-oncolor,"(241, 100, 100, 255)"
+2867.75098,0.000281,parameter,sysmon,lights-2-key,F6
+2867.750985,0.000281,parameter,sysmon,lights-2-on,0
+2867.750989,0.000281,parameter,sysmon,lights-2-_failuretimer,
+2867.750993,0.000281,parameter,sysmon,lights-2-_onfailure,0
+2867.750998,0.000281,parameter,sysmon,lights-2-_milliresponsetime,0
+2867.751002,0.000281,parameter,sysmon,lights-2-_freezetimer,
+2867.751006,0.000281,parameter,sysmon,lights-2-widget,<core.widgets.light.Light object at 0x7e47f15a2a70>
+2867.751012,0.000281,parameter,sysmon,scales-1-name,F1
+2867.751016,0.000281,parameter,sysmon,scales-1-failure,0
+2867.75102,0.000281,parameter,sysmon,scales-1-side,0
+2867.751025,0.000281,parameter,sysmon,scales-1-key,F1
+2867.751029,0.000281,parameter,sysmon,scales-1-_failuretimer,
+2867.751033,0.000281,parameter,sysmon,scales-1-_onfailure,0
+2867.751038,0.000281,parameter,sysmon,scales-1-_milliresponsetime,0
+2867.751042,0.000281,parameter,sysmon,scales-1-_freezetimer,
+2867.751047,0.000281,parameter,sysmon,scales-1-_pos,5
+2867.751053,0.000281,parameter,sysmon,scales-1-_zone,0
+2867.751057,0.000281,parameter,sysmon,scales-1-_feedbacktimer,
+2867.751061,0.000281,parameter,sysmon,scales-1-_feedbacktype,
+2867.751066,0.000281,parameter,sysmon,scales-1-widget,<core.widgets.scale.Scale object at 0x7e47f00b99f0>
+2867.751071,0.000281,parameter,sysmon,scales-2-name,F2
+2867.751076,0.000281,parameter,sysmon,scales-2-failure,0
+2867.75108,0.000281,parameter,sysmon,scales-2-side,0
+2867.751084,0.000281,parameter,sysmon,scales-2-key,F2
+2867.751088,0.000281,parameter,sysmon,scales-2-_failuretimer,
+2867.751093,0.000281,parameter,sysmon,scales-2-_onfailure,0
+2867.751097,0.000281,parameter,sysmon,scales-2-_milliresponsetime,0
+2867.751103,0.000281,parameter,sysmon,scales-2-_freezetimer,
+2867.751107,0.000281,parameter,sysmon,scales-2-_pos,5
+2867.751111,0.000281,parameter,sysmon,scales-2-_zone,0
+2867.751116,0.000281,parameter,sysmon,scales-2-_feedbacktimer,
+2867.75112,0.000281,parameter,sysmon,scales-2-_feedbacktype,
+2867.751124,0.000281,parameter,sysmon,scales-2-widget,<core.widgets.scale.Scale object at 0x7e47f00b9840>
+2867.751129,0.000281,parameter,sysmon,scales-3-name,F3
+2867.751133,0.000281,parameter,sysmon,scales-3-failure,0
+2867.751137,0.000281,parameter,sysmon,scales-3-side,0
+2867.751141,0.000281,parameter,sysmon,scales-3-key,F3
+2867.751145,0.000281,parameter,sysmon,scales-3-_failuretimer,
+2867.751149,0.000281,parameter,sysmon,scales-3-_onfailure,0
+2867.751153,0.000281,parameter,sysmon,scales-3-_milliresponsetime,0
+2867.751157,0.000281,parameter,sysmon,scales-3-_freezetimer,
+2867.751162,0.000281,parameter,sysmon,scales-3-_pos,5
+2867.751166,0.000281,parameter,sysmon,scales-3-_zone,0
+2867.75117,0.000281,parameter,sysmon,scales-3-_feedbacktimer,
+2867.751174,0.000281,parameter,sysmon,scales-3-_feedbacktype,
+2867.751178,0.000281,parameter,sysmon,scales-3-widget,<core.widgets.scale.Scale object at 0x7e47f00b4700>
+2867.751185,0.000281,parameter,sysmon,scales-4-name,F4
+2867.751189,0.000281,parameter,sysmon,scales-4-failure,0
+2867.751193,0.000281,parameter,sysmon,scales-4-side,0
+2867.751197,0.000281,parameter,sysmon,scales-4-key,F4
+2867.751201,0.000281,parameter,sysmon,scales-4-_failuretimer,
+2867.751205,0.000281,parameter,sysmon,scales-4-_onfailure,0
+2867.751209,0.000281,parameter,sysmon,scales-4-_milliresponsetime,0
+2867.751297,0.000281,parameter,sysmon,scales-4-_freezetimer,
+2867.751306,0.000281,parameter,sysmon,scales-4-_pos,5
+2867.751313,0.000281,parameter,sysmon,scales-4-_zone,0
+2867.751318,0.000281,parameter,sysmon,scales-4-_feedbacktimer,
+2867.751323,0.000281,parameter,sysmon,scales-4-_feedbacktype,
+2867.751327,0.000281,parameter,sysmon,scales-4-widget,<core.widgets.scale.Scale object at 0x7e47f00b7580>
+2867.752245,0.000281,state,sysmon,"foreground, visibility",1
+2867.752826,0.000281,state,sysmon,"overdue, visibility",1
+2867.755436,0.000281,state,sysmon,"foreground, visibility",0
+2867.755459,0.000281,state,sysmon,"overdue, visibility",0
+2867.755472,0.000281,event,sysmon,self,start
+2868.314116,0.000281,dialog,,,Warning end
+2868.314296,0.008893,seed_value,sysmon,,29
+2868.314307,0.008893,seed_output,sysmon,,-1
+2868.314324,0.008893,seed_value,sysmon,,30
+2868.314331,0.008893,seed_output,sysmon,,1
+2868.314344,0.008893,seed_value,sysmon,,31
+2868.314349,0.008893,seed_output,sysmon,,-1
+2868.314361,0.008893,seed_value,sysmon,,32
+2868.314365,0.008893,seed_output,sysmon,,-1
+2868.319981,0.008893,state,sysmon,"automode, text",MANUAL
+2868.320115,0.008893,state,sysmon,"scale1, arrow",4
+2868.320133,0.008893,state,sysmon,"scale2, arrow",6
+2868.320145,0.008893,state,sysmon,"scale3, arrow",4
+2868.320155,0.008893,state,sysmon,"scale4, arrow",4
+2868.320328,0.008893,aoi,track,foreground,"(576, 1140.0, 1248, 600.0)"
+2868.320353,0.008893,aoi,track,overdue,"(576, 1140.0, 1248, 600.0)"
+2868.323607,0.008893,aoi,track,task_title,"(576, 1200.0, 1248, 1140.0)"
+2868.323775,0.008893,aoi,track,automode,"(775.9200000000001, 687.0, 876.72, 657.0)"
+2868.325711,0.008893,aoi,track,reticle,"(696.0, 1086.0, 1128.0, 654.0)"
+2868.325743,0.008893,parameter,track,title,Tracking
+2868.325751,0.008893,parameter,track,taskplacement,topmid
+2868.325756,0.008893,parameter,track,taskupdatetime,20
+2868.325763,0.008893,parameter,track,taskfeedback-overdue-active,0
+2868.325769,0.008893,parameter,track,taskfeedback-overdue-color,"(241, 100, 100, 255)"
+2868.325774,0.008893,parameter,track,taskfeedback-overdue-delayms,2000
+2868.325779,0.008893,parameter,track,taskfeedback-overdue-blinkdurationms,1000
+2868.325783,0.008893,parameter,track,taskfeedback-overdue-_nexttoggletime,0
+2868.325788,0.008893,parameter,track,taskfeedback-overdue-_is_visible,0
+2868.325792,0.008893,parameter,track,taskfeedback-overdue-widget,<core.widgets.frame.Frame object at 0x7e47f00f6320>
+2868.325799,0.008893,parameter,track,cursorcolor,"(50, 50, 50, 255)"
+2868.325804,0.008893,parameter,track,cursorcoloroutside,"(241, 100, 100, 255)"
+2868.325809,0.008893,parameter,track,automaticsolver,0
+2868.325813,0.008893,parameter,track,displayautomationstate,1
+2868.325817,0.008893,parameter,track,targetproportion,0.25
+2868.325822,0.008893,parameter,track,joystickforce,1
+2868.325826,0.008893,parameter,track,inverseaxis,0
+2868.32583,0.008893,parameter,track,keyboardcontrol,0
+2868.326068,0.008893,state,track,"foreground, visibility",1
+2868.326131,0.008893,state,track,"overdue, visibility",1
+2868.326622,0.008893,state,track,"foreground, visibility",0
+2868.32664,0.008893,state,track,"overdue, visibility",0
+2868.326649,0.008893,event,track,self,start
+2868.326728,0.021388,performance,track,cursor_in_target,1
+2868.326737,0.021388,performance,track,center_deviation,0.0
+2868.327028,0.021388,state,track,"automode, text",MANUAL
+2868.327103,0.021388,state,track,"reticle, cursor_relative","(1.7279712001439997, 2.073550233958317)"
+2868.327114,0.021388,state,track,"reticle, cursor_proportional","(0.003999933333666666, 0.004799884800829438)"
+2868.327187,0.021388,event,communications,voicegender,male
+2868.335005,0.029552,event,communications,voiceidiom,english
+2868.335216,0.029735,aoi,communications,foreground,"(0, 588.0, 614, 48.0)"
+2868.335243,0.029735,aoi,communications,overdue,"(0, 588.0, 614, 48.0)"
+2868.3373,0.029735,aoi,communications,task_title,"(0, 648.0, 614, 588.0)"
+2868.337457,0.029735,aoi,communications,automode,"(260.95, 192.0, 353.04999999999995, 162.0)"
+2868.343274,0.029735,aoi,communications,callsign,"(0, 588.0, 614, 48.0)"
+2868.343317,0.029735,seed_value,communications,,26
+2868.343325,0.029735,seed_output,communications,,1
+2868.348882,0.029735,aoi,communications,radio_NAV_1,"(18.419999999999998, 442.20000000000005, 472.78000000000003, 404.40000000000003)"
+2868.34942,0.029735,state,communications,"radio_NAV_2, selected",1
+2868.349434,0.029735,aoi,communications,radio_NAV_2,"(18.419999999999998, 388.20000000000005, 472.78000000000003, 350.40000000000003)"
+2868.351211,0.029735,aoi,communications,radio_COM_1,"(18.419999999999998, 334.2, 472.78000000000003, 296.4)"
+2868.351671,0.029735,aoi,communications,radio_COM_2,"(18.419999999999998, 280.2, 472.78000000000003, 242.4)"
+2868.351687,0.029735,parameter,communications,title,Communications
+2868.351694,0.029735,parameter,communications,taskplacement,bottomleft
+2868.351699,0.029735,parameter,communications,taskupdatetime,80
+2868.351705,0.029735,parameter,communications,taskfeedback-overdue-active,0
+2868.351711,0.029735,parameter,communications,taskfeedback-overdue-color,"(241, 100, 100, 255)"
+2868.351716,0.029735,parameter,communications,taskfeedback-overdue-delayms,2000
+2868.351721,0.029735,parameter,communications,taskfeedback-overdue-blinkdurationms,1000
+2868.351725,0.029735,parameter,communications,taskfeedback-overdue-_nexttoggletime,0
+2868.35173,0.029735,parameter,communications,taskfeedback-overdue-_is_visible,0
+2868.351735,0.029735,parameter,communications,taskfeedback-overdue-widget,<core.widgets.frame.Frame object at 0x7e47f00d9480>
+2868.351741,0.029735,parameter,communications,callsignregex,[A-Z][A-Z][A-Z]\d\d\d
+2868.351746,0.029735,parameter,communications,owncallsign,DXE892
+2868.35175,0.029735,parameter,communications,othercallsign,"['APD620', 'SFU347', 'KBA410', 'OSQ034', 'BJW275']"
+2868.351756,0.029735,parameter,communications,othercallsignnumber,5
+2868.35176,0.029735,parameter,communications,airbandminMhz,108.0
+2868.351766,0.029735,parameter,communications,airbandmaxMhz,137.0
+2868.35177,0.029735,parameter,communications,airbandminvariationMhz,5
+2868.351775,0.029735,parameter,communications,airbandmaxvariationMhz,6
+2868.351781,0.029735,parameter,communications,voicegender,male
+2868.351785,0.029735,parameter,communications,voiceidiom,english
+2868.35179,0.029735,parameter,communications,radioprompt,
+2868.351794,0.029735,parameter,communications,maxresponsedelay,20000
+2868.351798,0.029735,parameter,communications,promptlist,"['NAV_1', 'NAV_2', 'COM_1', 'COM_2']"
+2868.351803,0.029735,parameter,communications,automaticsolver,0
+2868.351808,0.029735,parameter,communications,displayautomationstate,1
+2868.351813,0.029735,parameter,communications,feedbackduration,1500
+2868.351817,0.029735,parameter,communications,feedbacks-positive-active,0
+2868.351822,0.029735,parameter,communications,feedbacks-positive-color,"(142, 219, 176, 255)"
+2868.351827,0.029735,parameter,communications,feedbacks-negative-active,0
+2868.351832,0.029735,parameter,communications,feedbacks-negative-color,"(241, 100, 100, 255)"
+2868.351837,0.029735,parameter,communications,keys-selectradioup,UP
+2868.351841,0.029735,parameter,communications,keys-selectradiodown,DOWN
+2868.351845,0.029735,parameter,communications,keys-tunefrequencyup,RIGHT
+2868.35185,0.029735,parameter,communications,keys-tunefrequencydown,LEFT
+2868.351854,0.029735,parameter,communications,keys-validateresponse,ENTER
+2868.351859,0.029735,parameter,communications,radios-0-name,NAV_1
+2868.351863,0.029735,parameter,communications,radios-0-currentfreq,129.7
+2868.351868,0.029735,parameter,communications,radios-0-targetfreq,
+2868.351874,0.029735,parameter,communications,radios-0-pos,0
+2868.351878,0.029735,parameter,communications,radios-0-response_time,0
+2868.351883,0.029735,parameter,communications,radios-0-is_active,0
+2868.351887,0.029735,parameter,communications,radios-0-is_prompting,0
+2868.351891,0.029735,parameter,communications,radios-0-_feedbacktimer,
+2868.351895,0.029735,parameter,communications,radios-0-_feedbacktype,
+2868.351956,0.029735,parameter,communications,radios-0-widget,<core.widgets.radio.Radio object at 0x7e47d4bcb970>
+2868.351967,0.029735,parameter,communications,radios-1-name,NAV_2
+2868.351973,0.029735,parameter,communications,radios-1-currentfreq,126.8
+2868.351978,0.029735,parameter,communications,radios-1-targetfreq,
+2868.351983,0.029735,parameter,communications,radios-1-pos,1
+2868.351987,0.029735,parameter,communications,radios-1-response_time,0
+2868.351992,0.029735,parameter,communications,radios-1-is_active,1
+2868.351996,0.029735,parameter,communications,radios-1-is_prompting,0
+2868.352,0.029735,parameter,communications,radios-1-_feedbacktimer,
+2868.352019,0.029735,parameter,communications,radios-1-_feedbacktype,
+2868.352024,0.029735,parameter,communications,radios-1-widget,<core.widgets.radio.Radio object at 0x7e47d4bdf1c0>
+2868.35203,0.029735,parameter,communications,radios-2-name,COM_1
+2868.352034,0.029735,parameter,communications,radios-2-currentfreq,111.3
+2868.352038,0.029735,parameter,communications,radios-2-targetfreq,
+2868.352043,0.029735,parameter,communications,radios-2-pos,2
+2868.352047,0.029735,parameter,communications,radios-2-response_time,0
+2868.352051,0.029735,parameter,communications,radios-2-is_active,0
+2868.352055,0.029735,parameter,communications,radios-2-is_prompting,0
+2868.352059,0.029735,parameter,communications,radios-2-_feedbacktimer,
+2868.352063,0.029735,parameter,communications,radios-2-_feedbacktype,
+2868.352067,0.029735,parameter,communications,radios-2-widget,<core.widgets.radio.Radio object at 0x7e47d494c7f0>
+2868.352072,0.029735,parameter,communications,radios-3-name,COM_2
+2868.352076,0.029735,parameter,communications,radios-3-currentfreq,123.9
+2868.35208,0.029735,parameter,communications,radios-3-targetfreq,
+2868.352084,0.029735,parameter,communications,radios-3-pos,3
+2868.352088,0.029735,parameter,communications,radios-3-response_time,0
+2868.352093,0.029735,parameter,communications,radios-3-is_active,0
+2868.352097,0.029735,parameter,communications,radios-3-is_prompting,0
+2868.352101,0.029735,parameter,communications,radios-3-_feedbacktimer,
+2868.352105,0.029735,parameter,communications,radios-3-_feedbacktype,
+2868.352109,0.029735,parameter,communications,radios-3-widget,<core.widgets.radio.Radio object at 0x7e47d494ddb0>
+2868.352339,0.029735,state,communications,"foreground, visibility",1
+2868.35239,0.029735,state,communications,"overdue, visibility",1
+2868.353155,0.029735,state,communications,"radio_NAV_2, selected",1
+2868.353179,0.029735,state,communications,"foreground, visibility",0
+2868.353192,0.029735,state,communications,"overdue, visibility",0
+2868.353203,0.029735,event,communications,self,start
+2868.353269,0.047932,performance,track,cursor_in_target,1
+2868.353277,0.047932,performance,track,center_deviation,2.699166
+2868.353323,0.047932,state,track,"reticle, cursor_relative","(2.591902801093494, 3.110232041120957)"
+2868.353334,0.047932,state,track,"reticle, cursor_proportional","(0.005999775002531236, 0.007199611206298512)"
+2868.353824,0.047932,state,communications,"automode, text",MANUAL
+2868.353966,0.047932,state,communications,"callsign, text",DXE892
+2868.354156,0.047932,aoi,resman,foreground,"(614, 588.0, 1382, 48.0)"
+2868.354177,0.047932,aoi,resman,overdue,"(614, 588.0, 1382, 48.0)"
+2868.354639,0.047932,aoi,resman,task_title,"(614, 648.0, 1382, 588.0)"
+2868.354746,0.047932,aoi,resman,automode,"(927.344, 391.5, 1042.544, 361.5)"
+2868.354895,0.047932,aoi,resman,status_foreground,"(1382, 426.0, 1920, 48.0)"
+2868.3554,0.047932,aoi,resman,status_title,"(1382, 468.0, 1920, 426.0)"
+2868.357555,0.047932,aoi,resman,pump_1_flow,"(1382, 452.46, 1920, 414.65999999999997)"
+2868.358321,0.047932,aoi,resman,pump_2_flow,"(1382, 414.66, 1920, 376.86)"
+2868.358869,0.047932,aoi,resman,pump_3_flow,"(1382, 376.86, 1920, 339.06)"
+2868.360556,0.047932,aoi,resman,pump_4_flow,"(1382, 339.06, 1920, 301.26)"
+2868.362919,0.047932,aoi,resman,pump_5_flow,"(1382, 301.26, 1920, 263.46)"
+2868.363375,0.047932,aoi,resman,pump_6_flow,"(1382, 263.46, 1920, 225.66)"
+2868.363775,0.047932,aoi,resman,pump_7_flow,"(1382, 225.65999999999997, 1920, 187.85999999999996)"
+2868.370342,0.047932,aoi,resman,pump_8_flow,"(1382, 187.85999999999996, 1920, 150.05999999999995)"
+2868.371079,0.047932,aoi,resman,tank_a,"(721.52, 561.0, 836.72, 372.0)"
+2868.373451,0.047932,aoi,resman,tank_b,"(1105.52, 561.0, 1220.72, 372.0)"
+2868.374137,0.047932,aoi,resman,tank_c,"(652.4, 345.0, 729.2, 156.0)"
+2868.374742,0.047932,aoi,resman,tank_d,"(1036.4, 345.0, 1113.2, 156.0)"
+2868.375207,0.047932,aoi,resman,tank_e,"(844.4, 345.0, 936.56, 156.0)"
+2868.377051,0.047932,aoi,resman,tank_f,"(1228.4, 345.0, 1320.5600000000002, 156.0)"
+2868.379897,0.047932,parameter,resman,title,Resources management
+2868.379913,0.047932,parameter,resman,taskplacement,bottommid
+2868.37992,0.047932,parameter,resman,taskupdatetime,2000
+2868.379927,0.047932,parameter,resman,taskfeedback-overdue-active,0
+2868.379933,0.047932,parameter,resman,taskfeedback-overdue-color,"(241, 100, 100, 255)"
+2868.379939,0.047932,parameter,resman,taskfeedback-overdue-delayms,2000
+2868.379943,0.047932,parameter,resman,taskfeedback-overdue-blinkdurationms,1000
+2868.379948,0.047932,parameter,resman,taskfeedback-overdue-_nexttoggletime,0
+2868.379952,0.047932,parameter,resman,taskfeedback-overdue-_is_visible,0
+2868.379956,0.047932,parameter,resman,taskfeedback-overdue-widget,<core.widgets.frame.Frame object at 0x7e47f00da440>
+2868.379962,0.047932,parameter,resman,automaticsolver,0
+2868.379967,0.047932,parameter,resman,allowmanualoverride,0
+2868.379971,0.047932,parameter,resman,displayautomationstate,1
+2868.379975,0.047932,parameter,resman,pumpcoloroff,"(255, 255, 255, 255)"
+2868.37998,0.047932,parameter,resman,pumpcoloron,"(142, 219, 176, 255)"
+2868.379984,0.047932,parameter,resman,pumpcolorfailure,"(241, 100, 100, 255)"
+2868.379988,0.047932,parameter,resman,toleranceradius,250
+2868.379993,0.047932,parameter,resman,statuslocation,bottomright
+2868.379997,0.047932,parameter,resman,displaystatus,1
+2868.380013,0.047932,parameter,resman,statusheightratio,0.7
+2868.380019,0.047932,parameter,resman,tolerancecolor,"(50, 50, 50, 255)"
+2868.380026,0.047932,parameter,resman,tolerancecoloroutside,"(50, 50, 50, 255)"
+2868.380031,0.047932,parameter,resman,tank-a-level,2500
+2868.380035,0.047932,parameter,resman,tank-a-max,4000
+2868.380039,0.047932,parameter,resman,tank-a-target,2500
+2868.380043,0.047932,parameter,resman,tank-a-depletable,1
+2868.380048,0.047932,parameter,resman,tank-a-lossperminute,800
+2868.380052,0.047932,parameter,resman,tank-a-_infoside,left
+2868.380056,0.047932,parameter,resman,tank-a-_response_time,0
+2868.38006,0.047932,parameter,resman,tank-a-_is_in_tolerance,
+2868.380065,0.047932,parameter,resman,tank-a-_tolerance_color,"(50, 50, 50, 255)"
+2868.380069,0.047932,parameter,resman,tank-a-widget,<core.widgets.tank.Tank object at 0x7e47f00b7df0>
+2868.380075,0.047932,parameter,resman,tank-b-level,2500
+2868.380079,0.047932,parameter,resman,tank-b-max,4000
+2868.380083,0.047932,parameter,resman,tank-b-target,2500
+2868.380088,0.047932,parameter,resman,tank-b-depletable,1
+2868.380092,0.047932,parameter,resman,tank-b-lossperminute,800
+2868.380096,0.047932,parameter,resman,tank-b-_infoside,right
+2868.3801,0.047932,parameter,resman,tank-b-_response_time,0
+2868.380104,0.047932,parameter,resman,tank-b-_is_in_tolerance,
+2868.380108,0.047932,parameter,resman,tank-b-_tolerance_color,"(50, 50, 50, 255)"
+2868.380112,0.047932,parameter,resman,tank-b-widget,<core.widgets.tank.Tank object at 0x7e47f00bb340>
+2868.380117,0.047932,parameter,resman,tank-c-level,1000
+2868.380122,0.047932,parameter,resman,tank-c-max,2000
+2868.380126,0.047932,parameter,resman,tank-c-target,
+2868.38013,0.047932,parameter,resman,tank-c-depletable,1
+2868.380134,0.047932,parameter,resman,tank-c-lossperminute,0
+2868.380138,0.047932,parameter,resman,tank-c-_infoside,left
+2868.380142,0.047932,parameter,resman,tank-c-widget,<core.widgets.tank.Tank object at 0x7e47d49b1600>
+2868.380147,0.047932,parameter,resman,tank-d-level,1000
+2868.380205,0.047932,parameter,resman,tank-d-max,2000
+2868.380214,0.047932,parameter,resman,tank-d-target,
+2868.38022,0.047932,parameter,resman,tank-d-depletable,1
+2868.380225,0.047932,parameter,resman,tank-d-lossperminute,0
+2868.380229,0.047932,parameter,resman,tank-d-_infoside,left
+2868.380233,0.047932,parameter,resman,tank-d-widget,<core.widgets.tank.Tank object at 0x7e47d49b3700>
+2868.380241,0.047932,parameter,resman,tank-e-level,3000
+2868.380246,0.047932,parameter,resman,tank-e-max,4000
+2868.38025,0.047932,parameter,resman,tank-e-target,
+2868.380254,0.047932,parameter,resman,tank-e-depletable,0
+2868.380258,0.047932,parameter,resman,tank-e-lossperminute,0
+2868.380263,0.047932,parameter,resman,tank-e-_infoside,right
+2868.380267,0.047932,parameter,resman,tank-e-widget,<core.widgets.tank.Tank object at 0x7e47d49e1840>
+2868.380272,0.047932,parameter,resman,tank-f-level,3000
+2868.380313,0.047932,parameter,resman,tank-f-max,4000
+2868.380321,0.047932,parameter,resman,tank-f-target,
+2868.380326,0.047932,parameter,resman,tank-f-depletable,0
+2868.380332,0.047932,parameter,resman,tank-f-lossperminute,0
+2868.380336,0.047932,parameter,resman,tank-f-_infoside,right
+2868.38034,0.047932,parameter,resman,tank-f-widget,<core.widgets.tank.Tank object at 0x7e47d49e2fb0>
+2868.380349,0.047932,parameter,resman,pump-1-flow,800
+2868.380353,0.047932,parameter,resman,pump-1-state,off
+2868.380358,0.047932,parameter,resman,pump-1-key,NUM_1
+2868.380362,0.047932,parameter,resman,pump-1-_fromtank,c
+2868.380366,0.047932,parameter,resman,pump-1-_totank,a
+2868.380371,0.047932,parameter,resman,pump-1-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d49735e0>
+2868.380377,0.047932,parameter,resman,pump-1-widget,<core.widgets.pump.Pump object at 0x7e47d49fc6d0>
+2868.380382,0.047932,parameter,resman,pump-2-flow,600
+2868.380386,0.047932,parameter,resman,pump-2-state,off
+2868.38039,0.047932,parameter,resman,pump-2-key,NUM_2
+2868.380394,0.047932,parameter,resman,pump-2-_fromtank,e
+2868.380398,0.047932,parameter,resman,pump-2-_totank,a
+2868.380403,0.047932,parameter,resman,pump-2-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d4994250>
+2868.380407,0.047932,parameter,resman,pump-2-widget,<core.widgets.pump.Pump object at 0x7e47d49fda20>
+2868.380412,0.047932,parameter,resman,pump-3-flow,800
+2868.380417,0.047932,parameter,resman,pump-3-state,off
+2868.38042,0.047932,parameter,resman,pump-3-key,NUM_3
+2868.380425,0.047932,parameter,resman,pump-3-_fromtank,d
+2868.380429,0.047932,parameter,resman,pump-3-_totank,b
+2868.380433,0.047932,parameter,resman,pump-3-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d4995300>
+2868.380438,0.047932,parameter,resman,pump-3-widget,<core.widgets.pump.Pump object at 0x7e47d49fece0>
+2868.380443,0.047932,parameter,resman,pump-4-flow,600
+2868.380447,0.047932,parameter,resman,pump-4-state,off
+2868.380451,0.047932,parameter,resman,pump-4-key,NUM_4
+2868.380455,0.047932,parameter,resman,pump-4-_fromtank,f
+2868.380459,0.047932,parameter,resman,pump-4-_totank,b
+2868.380463,0.047932,parameter,resman,pump-4-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d4996320>
+2868.380467,0.047932,parameter,resman,pump-4-widget,<core.widgets.pump.Pump object at 0x7e47d4a18040>
+2868.380473,0.047932,parameter,resman,pump-5-flow,600
+2868.380477,0.047932,parameter,resman,pump-5-state,off
+2868.380481,0.047932,parameter,resman,pump-5-key,NUM_5
+2868.380485,0.047932,parameter,resman,pump-5-_fromtank,e
+2868.380489,0.047932,parameter,resman,pump-5-_totank,c
+2868.380493,0.047932,parameter,resman,pump-5-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d49973a0>
+2868.380502,0.047932,parameter,resman,pump-5-widget,<core.widgets.pump.Pump object at 0x7e47d4a19360>
+2868.380507,0.047932,parameter,resman,pump-6-flow,600
+2868.380512,0.047932,parameter,resman,pump-6-state,off
+2868.380516,0.047932,parameter,resman,pump-6-key,NUM_6
+2868.38052,0.047932,parameter,resman,pump-6-_fromtank,f
+2868.380525,0.047932,parameter,resman,pump-6-_totank,d
+2868.38053,0.047932,parameter,resman,pump-6-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d4bddf00>
+2868.380535,0.047932,parameter,resman,pump-6-widget,<core.widgets.pump.Pump object at 0x7e47d4a1a530>
+2868.38054,0.047932,parameter,resman,pump-7-flow,400
+2868.380544,0.047932,parameter,resman,pump-7-state,off
+2868.380548,0.047932,parameter,resman,pump-7-key,NUM_7
+2868.380552,0.047932,parameter,resman,pump-7-_fromtank,a
+2868.380556,0.047932,parameter,resman,pump-7-_totank,b
+2868.38056,0.047932,parameter,resman,pump-7-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47f00bbfd0>
+2868.380565,0.047932,parameter,resman,pump-7-widget,<core.widgets.pump.Pump object at 0x7e47d4a1b760>
+2868.38057,0.047932,parameter,resman,pump-8-flow,400
+2868.380574,0.047932,parameter,resman,pump-8-state,off
+2868.380578,0.047932,parameter,resman,pump-8-key,NUM_8
+2868.380582,0.047932,parameter,resman,pump-8-_fromtank,b
+2868.380586,0.047932,parameter,resman,pump-8-_totank,a
+2868.38059,0.047932,parameter,resman,pump-8-statuswidget,<core.widgets.pumpflow.PumpFlow object at 0x7e47d49b06a0>
+2868.380595,0.047932,parameter,resman,pump-8-widget,<core.widgets.pump.Pump object at 0x7e47d483c940>
+2868.380731,0.047932,state,resman,"foreground, visibility",1
+2868.380792,0.047932,state,resman,"overdue, visibility",1
+2868.381377,0.047932,state,resman,"status_foreground, visibility",1
+2868.389614,0.047932,state,resman,"foreground, visibility",0
+2868.389647,0.047932,state,resman,"overdue, visibility",0
+2868.389666,0.047932,state,resman,"status_foreground, visibility",0
+2868.389678,0.047932,event,resman,self,start
+2868.400444,0.095072,performance,resman,a_in_tolerance,1
+2868.400476,0.095072,performance,resman,a_deviation,0
+2868.400486,0.095072,performance,resman,b_in_tolerance,1
+2868.400494,0.095072,performance,resman,b_deviation,0
+2868.401141,0.095072,state,resman,"automode, text",MANUAL
+2868.401301,0.095072,performance,track,cursor_in_target,1
+2868.401313,0.095072,performance,track,center_deviation,4.048642
+2868.401368,0.095072,state,track,"reticle, cursor_relative","(3.4557696046079567, 4.146801880266022)"
+2868.401381,0.095072,state,track,"reticle, cursor_proportional","(0.007999466677333233, 0.009599078426541717)"
+2868.401513,0.095072,event,copilot,transparency,transparent
+2868.410626,0.104922,aoi,copilot,foreground,"(1248, 1140.0, 1920, 600.0)"
+2868.410665,0.104922,aoi,copilot,overdue,"(1248, 1140.0, 1920, 600.0)"
+2868.416556,0.104922,aoi,copilot,task_title,"(1248, 1200.0, 1920, 1140.0)"
+2868.4167,0.104922,aoi,copilot,border,"(1382, 1188.0, 1920, 468.0)"
+2868.4584,0.104922,aoi,copilot,text,"(1382, 1188.0, 1920, 468.0)"
+2868.458433,0.104922,parameter,copilot,title,Co-pilot Explanations
+2868.458442,0.104922,parameter,copilot,taskplacement,topright
+2868.458447,0.104922,parameter,copilot,taskupdatetime,1000
+2868.458454,0.104922,parameter,copilot,taskfeedback-overdue-active,0
+2868.458461,0.104922,parameter,copilot,taskfeedback-overdue-color,"(241, 100, 100, 255)"
+2868.458467,0.104922,parameter,copilot,taskfeedback-overdue-delayms,2000
+2868.458472,0.104922,parameter,copilot,taskfeedback-overdue-blinkdurationms,1000
+2868.458477,0.104922,parameter,copilot,taskfeedback-overdue-_nexttoggletime,0
+2868.458482,0.104922,parameter,copilot,taskfeedback-overdue-_is_visible,0
+2868.458487,0.104922,parameter,copilot,taskfeedback-overdue-widget,<core.widgets.frame.Frame object at 0x7e47d487d0c0>
+2868.458494,0.104922,parameter,copilot,transparency,transparent
+2868.458501,0.104922,parameter,copilot,maxvisiblemessages,10
+2868.458506,0.104922,parameter,copilot,stretchintobottomright,1
+2868.458702,0.104922,state,copilot,"foreground, visibility",1
+2868.458754,0.104922,state,copilot,"overdue, visibility",1
+2868.459451,0.104922,state,copilot,"border, visibility",1
+2868.460306,0.104922,state,copilot,"foreground, visibility",0
+2868.460331,0.104922,state,copilot,"overdue, visibility",0
+2868.460344,0.104922,event,copilot,self,start
+2868.460529,0.155087,performance,track,cursor_in_target,1
+2868.460608,0.155087,performance,track,center_deviation,5.397991
+2868.460671,0.155087,state,track,"reticle, cursor_relative","(4.319550014062291, 5.183222434991251)"
+2868.460683,0.155087,state,track,"reticle, cursor_proportional","(0.009998958365884934, 0.011998200080998266)"
+2868.460868,0.155087,event,sysmon,automaticsolver,1
+2868.47093,0.165309,event,communications,automaticsolver,1
+2868.471063,0.165663,event,resman,automaticsolver,1
+2868.471185,0.16577,event,resman,allowmanualoverride,1
+2868.471284,0.165892,event,resman,pump-7-flow,1500
+2868.471376,0.165988,event,track,keyboardcontrol,1
+2868.471465,0.166079,event,track,joystickforce,6
+2868.471555,0.166169,event,sysmon,allowmanualoverride,1
+2868.485799,0.180327,performance,track,cursor_in_target,1
+2868.485836,0.180327,performance,track,center_deviation,6.74717
+2868.485895,0.180327,state,track,"reticle, cursor_relative","(5.183222434991251, 6.219456394268606)"
+2868.48591,0.180327,state,track,"reticle, cursor_proportional","(0.011998200080998266, 0.0143968898015477)"
+2868.505691,0.200332,performance,track,cursor_in_target,1
+2868.505714,0.200332,performance,track,center_deviation,8.096137
+2868.505782,0.200332,state,track,"reticle, cursor_relative","(6.046765275629295, 7.255466453787469)"
+2868.505797,0.200332,state,track,"reticle, cursor_proportional","(0.01399714184173448, 0.016795061235619142)"
+2868.52027,0.214612,seed_value,sysmon,,33
+2868.520297,0.214612,seed_output,sysmon,,-1
+2868.52032,0.214612,seed_value,sysmon,,34
+2868.520325,0.214612,seed_output,sysmon,,1
+2868.520338,0.214612,seed_value,sysmon,,35
+2868.520342,0.214612,seed_output,sysmon,,1
+2868.520355,0.214612,seed_value,sysmon,,36
+2868.520359,0.214612,seed_output,sysmon,,1
+2868.526348,0.214612,state,sysmon,"automode, text",AUTO
+2868.526407,0.214612,state,sysmon,"scale1, arrow",3
+2868.526421,0.214612,state,sysmon,"scale2, arrow",7
+2868.526431,0.214612,state,sysmon,"scale3, arrow",5
+2868.526441,0.214612,state,sysmon,"scale4, arrow",5
+2868.526638,0.221219,performance,track,cursor_in_target,1
+2868.526649,0.221219,performance,track,center_deviation,9.444849
+2868.526697,0.221219,state,track,"reticle, cursor_relative","(6.910156947450384, 8.291215317297587)"
+2868.526708,0.221219,state,track,"reticle, cursor_proportional","(0.015995733674653664, 0.01919262804929997)"
+2868.540751,0.235126,state,communications,"automode, text",AUTO
+2868.553314,0.247824,performance,track,cursor_in_target,1
+2868.553351,0.247824,performance,track,center_deviation,10.793263
+2868.553409,0.247824,state,track,"reticle, cursor_relative","(7.773375865707689, 9.32666569795173)"
+2868.553422,0.247824,state,track,"reticle, cursor_proportional","(0.017993925615064094, 0.02158950393044382)"
+2868.573208,0.267853,performance,track,cursor_in_target,1
+2868.573239,0.267853,performance,track,center_deviation,12.141337
+2868.573282,0.267853,state,track,"reticle, cursor_relative","(8.636400449973214, 10.361780319648025)"
+2868.573295,0.267853,state,track,"reticle, cursor_proportional","(0.019991667708271328, 0.023985602591777837)"
+2868.593232,0.287872,performance,track,cursor_in_target,1
+2868.593257,0.287872,performance,track,center_deviation,13.489029
+2868.593313,0.287872,state,track,"reticle, cursor_relative","(9.499209124677304, 11.396521918371885)"
+2868.593326,0.287872,state,track,"reticle, cursor_proportional","(0.021988910010827093, 0.026380837774008993)"
+2868.619846,0.31434,performance,track,cursor_in_target,1
+2868.619887,0.31434,performance,track,center_deviation,14.836296
+2868.619952,0.31434,state,track,"reticle, cursor_relative","(10.361780319648025, 12.430853243537507)"
+2868.619968,0.31434,state,track,"reticle, cursor_proportional","(0.023985602591777837, 0.028775123248929415)"
+2868.639734,0.334369,performance,track,cursor_in_target,1
+2868.639762,0.334369,performance,track,center_deviation,16.183096
+2868.639814,0.334369,state,track,"reticle, cursor_relative","(11.224092470650431, 13.464737059328893)"
+2868.639827,0.334369,state,track,"reticle, cursor_proportional","(0.025981695533913034, 0.031168372822520586)"
+2868.659803,0.35444,performance,track,cursor_in_target,1
+2868.65983,0.35444,performance,track,center_deviation,17.529387
+2868.659879,0.35444,state,track,"reticle, cursor_relative","(12.086124019925661, 14.498136146040334)"
+2868.659893,0.35444,state,track,"reticle, cursor_proportional","(0.027977138935013104, 0.033560500338056326)"
+2868.687208,0.38173,performance,track,cursor_in_target,1
+2868.687249,0.38173,performance,track,center_deviation,18.875125
+2868.687312,0.38173,state,track,"reticle, cursor_relative","(12.947853416729878, 15.53101330141631)"
+2868.687328,0.38173,state,track,"reticle, cursor_proportional","(0.02997188290909694, 0.03595141967920442)"
+2868.707135,0.401771,performance,track,cursor_in_target,1
+2868.707162,0.401771,performance,track,center_deviation,20.220269
+2868.70721,0.401771,state,track,"reticle, cursor_relative","(13.809259117873042, 16.563331341990786)"
+2868.707223,0.401771,state,track,"reticle, cursor_proportional","(0.03196587758766908, 0.03834104477312682)"
+2868.720358,0.414781,seed_value,sysmon,,37
+2868.720384,0.414781,seed_output,sysmon,,-1
+2868.720403,0.414781,seed_value,sysmon,,38
+2868.72041,0.414781,seed_output,sysmon,,1
+2868.720425,0.414781,seed_value,sysmon,,39
+2868.72043,0.414781,seed_output,sysmon,,-1
+2868.720443,0.414781,seed_value,sysmon,,40
+2868.72045,0.414781,seed_output,sysmon,,1
+2868.720479,0.414781,state,sysmon,"scale1, arrow",4
+2868.720491,0.414781,state,sysmon,"scale2, arrow",6
+2868.720521,0.414781,state,sysmon,"scale3, arrow",4
+2868.720537,0.414781,state,sysmon,"scale4, arrow",6
+2868.727192,0.421828,performance,track,cursor_in_target,1
+2868.727212,0.421828,performance,track,center_deviation,21.564776
+2868.727261,0.421828,state,track,"reticle, cursor_relative","(14.67031958825749, 17.595053104425787)"
+2868.727275,0.421828,state,track,"reticle, cursor_proportional","(0.03395907312096641, 0.04072928959357821)"
+2868.753845,0.448358,performance,track,cursor_in_target,1
+2868.753882,0.448358,performance,track,center_deviation,22.908605
+2868.753954,0.448358,state,track,"reticle, cursor_relative","(15.53101330141631, 18.626141446849296)"
+2868.753968,0.448358,state,track,"reticle, cursor_proportional","(0.03595141967920442, 0.043116068164003)"
+2868.773795,0.468418,performance,track,cursor_in_target,1
+2868.773823,0.468418,performance,track,center_deviation,24.251712
+2868.773872,0.468418,state,track,"reticle, cursor_relative","(16.391318740051506, 19.656559250192334)"
+2868.773885,0.468418,state,track,"reticle, cursor_proportional","(0.03794286745382293, 0.0455012945606304)"
+2868.793881,0.488515,performance,track,cursor_in_target,1
+2868.79391,0.488515,performance,track,center_deviation,25.594055
+2868.793959,0.488515,state,track,"reticle, cursor_relative","(17.251214396571907, 20.686269419525274)"
+2868.793973,0.488515,state,track,"reticle, cursor_proportional","(0.03993336665873127, 0.047884882915567764)"
+2868.820816,0.515348,performance,track,cursor_in_target,1
+2868.820853,0.515348,performance,track,center_deviation,26.935592
+2868.820915,0.515348,state,track,"reticle, cursor_relative","(18.110678773630898, 21.71523488539322)"
+2868.82093,0.515348,state,track,"reticle, cursor_proportional","(0.041922867531553006, 0.05026674741989171)"
+2868.840785,0.535415,performance,track,cursor_in_target,1
+2868.840815,0.535415,performance,track,center_deviation,28.276282
+2868.840868,0.535415,state,track,"reticle, cursor_relative","(18.969690384663814, 22.743418605150538)"
+2868.840882,0.535415,state,track,"reticle, cursor_proportional","(0.04391132033486994, 0.05264680232673736)"
+2868.860875,0.55549,performance,track,cursor_in_target,1
+2868.860905,0.55549,performance,track,center_deviation,29.616081
+2868.860958,0.55549,state,track,"reticle, cursor_relative","(19.828227754425114, 23.77078356429436)"
+2868.860973,0.55549,state,track,"reticle, cursor_proportional","(0.04589867535746554, 0.05502496195438509)"
+2868.887641,0.582131,performance,track,cursor_in_target,1
+2868.887684,0.582131,performance,track,center_deviation,30.954947
+2868.887888,0.582131,state,track,"reticle, cursor_relative","(20.686269419525274, 24.797292777797104)"
+2868.887934,0.582131,state,track,"reticle, cursor_proportional","(0.047884882915567764, 0.05740114068934515)"
+2868.907576,0.602208,performance,track,cursor_in_target,1
+2868.907605,0.602208,performance,track,center_deviation,32.292839
+2868.907657,0.602208,state,track,"reticle, cursor_relative","(21.54379392896735, 25.822909291437956)"
+2868.907671,0.602208,state,track,"reticle, cursor_proportional","(0.04986989335409109, 0.05977525298943971)"
+2868.921355,0.615727,seed_value,sysmon,,41
+2868.921383,0.615727,seed_output,sysmon,,1
+2868.921403,0.615727,seed_value,sysmon,,42
+2868.92141,0.615727,seed_output,sysmon,,-1
+2868.921425,0.615727,seed_value,sysmon,,43
+2868.92143,0.615727,seed_output,sysmon,,-1
+2868.921445,0.615727,seed_value,sysmon,,44
+2868.92145,0.615727,seed_output,sysmon,,1
+2868.921485,0.615727,state,sysmon,"scale1, arrow",5
+2868.921497,0.615727,state,sysmon,"scale2, arrow",5
+2868.921507,0.615727,state,sysmon,"scale3, arrow",3
+2868.921517,0.615727,state,sysmon,"scale4, arrow",7
+2868.92761,0.622244,performance,track,cursor_in_target,1
+2868.927632,0.622244,performance,track,center_deviation,33.629715
+2868.927681,0.622244,state,track,"reticle, cursor_relative","(22.400779844683278, 26.847596183133188)"
+2868.927695,0.622244,state,track,"reticle, cursor_proportional","(0.051853657047877956, 0.06214721338688238)"
+2868.954894,0.649359,performance,track,cursor_in_target,1
+2868.954939,0.649359,performance,track,center_deviation,34.965531
+2868.955011,0.649359,state,track,"reticle, cursor_relative","(23.257205742069793, 27.87131656426536)"
+2868.955028,0.649359,state,track,"reticle, cursor_proportional","(0.053836124402939334, 0.064516936491355)"
+2868.974765,0.669395,performance,track,cursor_in_target,1
+2868.974796,0.669395,performance,track,center_deviation,36.300247
+2868.974848,0.669395,state,track,"reticle, cursor_relative","(24.113050210524072, 28.894033581011318)"
+2868.974862,0.669395,state,track,"reticle, cursor_proportional","(0.05581724585769461, 0.06688433699308176)"
+2868.99481,0.689446,performance,track,cursor_in_target,1
+2868.994837,0.689446,performance,track,center_deviation,37.633819
+2868.994886,0.689446,state,track,"reticle, cursor_relative","(24.96829185397897, 29.91571041566891)"
+2868.994899,0.689446,state,track,"reticle, cursor_proportional","(0.05779697188421058, 0.06924932966590026)"
+2869.021316,0.715816,performance,track,cursor_in_target,1
+2869.021356,0.715816,performance,track,center_deviation,38.966208
+2869.021422,0.715816,state,track,"reticle, cursor_relative","(25.822909291437956, 30.936310287982433)"
+2869.021438,0.715816,state,track,"reticle, cursor_proportional","(0.05977525298943971, 0.07161182937032971)"
+2869.041199,0.735835,performance,track,cursor_in_target,1
+2869.041226,0.735835,performance,track,center_deviation,40.297369
+2869.041277,0.735835,state,track,"reticle, cursor_relative","(26.67688115750959, 31.955796456466707)"
+2869.04129,0.735835,state,track,"reticle, cursor_proportional","(0.06175203971645739, 0.07397175105663589)"
+2869.061235,0.755868,performance,track,cursor_in_target,1
+2869.061267,0.755868,performance,track,center_deviation,41.627262
+2869.061319,0.755868,state,track,"reticle, cursor_relative","(27.530186102941716, 32.97413221972977)"
+2869.061333,0.755868,state,track,"reticle, cursor_proportional","(0.06372728264569842, 0.07632900976789297)"
+2869.088581,0.78308,performance,track,cursor_in_target,1
+2869.088624,0.78308,performance,track,center_deviation,42.955844
+2869.088689,0.78308,state,track,"reticle, cursor_relative","(28.382802795155126, 33.99128091779412)"
+2869.088704,0.78308,state,track,"reticle, cursor_proportional","(0.06570093239619242, 0.07868352064304195)"
+2869.108516,0.803149,performance,track,cursor_in_target,1
+2869.108544,0.803149,performance,track,center_deviation,44.283074
+2869.108596,0.803149,state,track,"reticle, cursor_relative","(29.234709918776925, 35.007205933416486)"
+2869.108609,0.803149,state,track,"reticle, cursor_proportional","(0.06767293962679843, 0.08103519891994557)"
+2869.121382,0.815955,seed_value,sysmon,,45
+2869.121407,0.815955,seed_output,sysmon,,1
+2869.121427,0.815955,seed_value,sysmon,,46
+2869.121433,0.815955,seed_output,sysmon,,-1
+2869.121449,0.815955,seed_value,sysmon,,47
+2869.121454,0.815955,seed_output,sysmon,,1
+2869.121468,0.815955,seed_value,sysmon,,48
+2869.121473,0.815955,seed_output,sysmon,,1
+2869.121498,0.815955,state,sysmon,"scale1, arrow",6
+2869.12151,0.815955,state,sysmon,"scale2, arrow",4
+2869.121519,0.815955,state,sysmon,"scale3, arrow",4
+2869.121527,0.815955,state,sysmon,"scale4, arrow",6
+2869.128568,0.823202,performance,track,cursor_in_target,1
+2869.128604,0.823202,performance,track,center_deviation,45.608911
+2869.128658,0.823202,state,track,"reticle, cursor_relative","(30.085886176173396, 36.02187069340602)"
+2869.128672,0.823202,state,track,"reticle, cursor_proportional","(0.06964325503743841, 0.08338395993843986)"
+2869.154737,0.849248,performance,track,cursor_in_target,1
+2869.154776,0.849248,performance,track,center_deviation,46.933311
+2869.15484,0.849248,state,track,"reticle, cursor_relative","(30.936310287982433, 37.03523866994096)"
+2869.154855,0.849248,state,track,"reticle, cursor_proportional","(0.07161182937032971, 0.08572971914338184)"
+2869.174644,0.86928,performance,track,cursor_in_target,1
+2869.174671,0.86928,performance,track,center_deviation,48.256235
+2869.17472,0.86928,state,track,"reticle, cursor_relative","(31.78596099364554, 38.04727338188357)"
+2869.174733,0.86928,state,track,"reticle, cursor_proportional","(0.07357861341121652, 0.08807239208769345)"
+2869.194697,0.889329,performance,track,cursor_in_target,1
+2869.194727,0.889329,performance,track,center_deviation,49.577639
+2869.194778,0.889329,state,track,"reticle, cursor_relative","(32.634817051939315, 39.05793839609354)"
+2869.194792,0.889329,state,track,"reticle, cursor_proportional","(0.07554355799060027, 0.09041189443540171)"
+2869.221464,0.915983,performance,track,cursor_in_target,1
+2869.221502,0.915983,performance,track,center_deviation,50.897484
+2869.221565,0.915983,state,track,"reticle, cursor_relative","(33.48285724150653, 40.0671973287395)"
+2869.221579,0.915983,state,track,"reticle, cursor_proportional","(0.07750661398496882, 0.09274814196467478)"
+2869.241383,0.936012,performance,track,cursor_in_target,1
+2869.241413,0.936012,performance,track,center_deviation,52.215726
+2869.241464,0.936012,state,track,"reticle, cursor_relative","(34.33006036138659, 41.07501384660888)"
+2869.241478,0.936012,state,track,"reticle, cursor_proportional","(0.07946773231802452, 0.09508105057085389)"
+2869.261427,0.956062,performance,track,cursor_in_target,1
+2869.261456,0.956062,performance,track,center_deviation,53.532325
+2869.261506,0.956062,state,track,"reticle, cursor_relative","(35.17640523154566, 42.08135166841588)"
+2869.26152,0.956062,state,track,"reticle, cursor_proportional","(0.08142686396191125, 0.0974105362694812)"
+2869.288552,0.983094,performance,track,cursor_in_target,0
+2869.288589,0.983094,performance,track,center_deviation,54.847239
+2869.288649,0.983094,state,track,"reticle, cursor_relative","(36.02187069340602, 43.08617456610759)"
+2869.288664,0.983094,state,track,"reticle, cursor_proportional","(0.08338395993843986, 0.09973651519932313)"
+2869.288703,0.983094,state,track,"reticle, cursor_color","(241, 100, 100, 255)"
+2869.308467,1.0031,performance,track,cursor_in_target,0
+2869.308496,1.0031,performance,track,center_deviation,56.160427
+2869.308548,1.0031,state,track,"reticle, cursor_relative","(36.8664356103752, 44.089446366168225)"
+2869.308563,1.0031,state,track,"reticle, cursor_proportional","(0.08533897132031296, 0.10205890362538941)"
+2869.322568,1.016972,seed_value,sysmon,,50
+2869.322595,1.016972,seed_output,sysmon,,1
+2869.322614,1.016972,seed_value,sysmon,,51
+2869.322621,1.016972,seed_output,sysmon,,-1
+2869.322636,1.016972,seed_value,sysmon,,52
+2869.322642,1.016972,seed_output,sysmon,,1
+2869.322657,1.016972,seed_value,sysmon,,53
+2869.322737,1.016972,seed_output,sysmon,,-1
+2869.322782,1.016972,state,sysmon,"scale1, arrow",7
+2869.322796,1.016972,state,sysmon,"scale2, arrow",3
+2869.322807,1.016972,state,sysmon,"scale3, arrow",5
+2869.322817,1.016972,state,sysmon,"scale4, arrow",5
+2869.328494,1.02313,performance,track,cursor_in_target,0
+2869.328513,1.02313,performance,track,center_deviation,57.471848
+2869.32856,1.02313,state,track,"reticle, cursor_relative","(37.71007886837424, 45.09113095092134)"
+2869.328573,1.02313,state,track,"reticle, cursor_proportional","(0.08729184923234777, 0.10437761794194754)"
+2869.355546,1.050035,performance,track,cursor_in_target,0
+2869.355591,1.050035,performance,track,center_deviation,58.781461
+2869.355653,1.050035,state,track,"reticle, cursor_relative","(38.552779376365635, 46.091192259830045)"
+2869.355669,1.050035,state,track,"reticle, cursor_proportional","(0.08924254485269822, 0.10669257467553252)"
+2869.375487,1.070121,performance,track,cursor_in_target,0
+2869.375516,1.070121,performance,track,center_deviation,60.089224
+2869.375567,1.070121,state,track,"reticle, cursor_relative","(39.39451606688058, 47.08959429079525)"
+2869.375581,1.070121,state,track,"reticle, cursor_proportional","(0.09119100941407542, 0.10900369048795196)"
+2869.395551,1.090187,performance,track,cursor_in_target,0
+2869.395577,1.090187,performance,track,center_deviation,61.395096
+2869.395626,1.090187,state,track,"reticle, cursor_relative","(40.23526789654564, 48.08630110145165)"
+2869.39564,1.090187,state,track,"reticle, cursor_proportional","(0.09313719420496677, 0.11131088217928624)"
+2869.422384,1.116882,performance,track,cursor_in_target,0
+2869.422424,1.116882,performance,track,center_deviation,62.699036
+2869.422488,1.116882,state,track,"reticle, cursor_relative","(41.07501384660888, 49.08127681046171)"
+2869.422503,1.116882,state,track,"reticle, cursor_proportional","(0.09508105057085389, 0.11361406669088359)"
+2869.442273,1.136906,performance,track,cursor_in_target,0
+2869.4423,1.136906,performance,track,center_deviation,64.001004
+2869.442352,1.136906,state,track,"reticle, cursor_relative","(41.913732923465275, 50.074485598807364)"
+2869.442367,1.136906,state,track,"reticle, cursor_proportional","(0.09702252991542888, 0.11591316110835038)"
+2869.46229,1.156924,performance,track,cursor_in_target,0
+2869.462318,1.156924,performance,track,center_deviation,65.300958
+2869.462369,1.156924,state,track,"reticle, cursor_relative","(42.75140415918158, 51.06589171107951)"
+2869.462382,1.156924,state,track,"reticle, cursor_proportional","(0.09896158370180921, 0.1182080826645359)"
+2869.489689,1.184211,performance,track,cursor_in_target,0
+2869.489728,1.184211,performance,track,center_deviation,66.598858
+2869.489789,1.184211,state,track,"reticle, cursor_relative","(43.58800661202055, 52.05545945676516)"
+2869.489804,1.184211,state,track,"reticle, cursor_proportional","(0.10089816345375127, 0.12049874874251196)"
+2869.509662,1.204296,performance,track,cursor_in_target,0
+2869.509693,1.204296,performance,track,center_deviation,67.894662
+2869.509743,1.204296,state,track,"reticle, cursor_relative","(44.42351936696443, 53.04315321153235)"
+2869.509757,1.204296,state,track,"reticle, cursor_proportional","(0.1028322207568621, 0.1227850768785471)"
+2869.522607,1.217183,seed_value,sysmon,,54
+2869.522632,1.217183,seed_output,sysmon,,-1
+2869.522651,1.217183,seed_value,sysmon,,55
+2869.522658,1.217183,seed_output,sysmon,,-1
+2869.522673,1.217183,seed_value,sysmon,,56
+2869.522678,1.217183,seed_output,sysmon,,-1
+2869.522692,1.217183,seed_value,sysmon,,57
+2869.522698,1.217183,seed_output,sysmon,,-1
+2869.522723,1.217183,state,sysmon,"scale1, arrow",6
+2869.522734,1.217183,state,sysmon,"scale2, arrow",4
+2869.522743,1.217183,state,sysmon,"scale3, arrow",4
+2869.522752,1.217183,state,sysmon,"scale4, arrow",4
+2869.529725,1.224353,performance,track,cursor_in_target,0
+2869.529752,1.224353,performance,track,center_deviation,69.188331
+2869.529804,1.224353,state,track,"reticle, cursor_relative","(45.257921536237845, 54.02893741851258)"
+2869.529818,1.224353,state,track,"reticle, cursor_proportional","(0.10476370725980982, 0.1250669847650754)"
+2869.556403,1.250892,performance,track,cursor_in_target,0
+2869.556441,1.250892,performance,track,center_deviation,70.479824
+2869.556505,1.250892,state,track,"reticle, cursor_relative","(46.091192259830045, 55.01277658958085)"
+2869.55652,1.250892,state,track,"reticle, cursor_proportional","(0.10669257467553252, 0.12734439025365937)"
+2869.576323,1.270942,performance,track,cursor_in_target,0
+2869.576352,1.270942,performance,track,center_deviation,71.769099
+2869.576404,1.270942,state,track,"reticle, cursor_relative","(46.92331070601632, 55.994635306633285)"
+2869.576418,1.270942,state,track,"reticle, cursor_proportional","(0.1086187747824452, 0.12961721135794743)"
+2869.596311,1.290944,performance,track,cursor_in_target,0
+2869.596341,1.290944,performance,track,center_deviation,73.056117
+2869.596393,1.290944,state,track,"reticle, cursor_relative","(47.75425607187888, 56.97447822286209)"
+2869.596407,1.290944,state,track,"reticle, cursor_proportional","(0.11054225942564555, 0.1318853662566252)"
+2869.622979,1.31751,performance,track,cursor_in_target,0
+2869.623014,1.31751,performance,track,center_deviation,74.340838
+2869.623074,1.31751,state,track,"reticle, cursor_relative","(48.58400758382684, 57.952270064028106)"
+2869.62309,1.31751,state,track,"reticle, cursor_proportional","(0.11246298051811768, 0.13414877329636135)"
+2869.64292,1.337554,performance,track,cursor_in_target,0
+2869.642949,1.337554,performance,track,center_deviation,75.62322
+2869.643,1.337554,state,track,"reticle, cursor_relative","(49.412544498115615, 58.927975629730646)"
+2869.643034,1.337554,state,track,"reticle, cursor_proportional","(0.11438089004193429, 0.13640735099474688)"
+2869.662967,1.3576,performance,track,cursor_in_target,0
+2869.662993,1.3576,performance,track,center_deviation,76.903224
+2869.663044,1.3576,state,track,"reticle, cursor_relative","(50.239846101365494, 59.901559794674746)"
+2869.663056,1.3576,state,track,"reticle, cursor_proportional","(0.11629594004945716, 0.13866101804322858)"
+2869.689144,1.383681,performance,track,cursor_in_target,0
+2869.68918,1.383681,performance,track,center_deviation,78.18081
+2869.689241,1.383681,state,track,"reticle, cursor_relative","(51.06589171107951, 60.872987509935584)"
+2869.689255,1.383681,state,track,"reticle, cursor_proportional","(0.1182080826645359, 0.14090969331003608)"
+2869.723191,1.391869,input,keyboard,ESCAPE,press
+2871.667079,1.391869,dialog,,,Exit OpenMATB? end
+2871.668864,1.402069,state,resman,"foreground, visibility",1
+2871.668912,1.402069,state,resman,"status_foreground, visibility",1
+2871.668923,1.402069,event,resman,self,stop
+2871.669475,1.402069,state,track,"foreground, visibility",1
+2871.669488,1.402069,event,track,self,stop
+2871.670073,1.402069,state,copilot,"foreground, visibility",1
+2871.670088,1.402069,event,copilot,self,stop
+2871.670536,1.402069,state,communications,"foreground, visibility",1
+2871.670551,1.402069,event,communications,self,stop
+2871.671017,1.402069,state,sysmon,"foreground, visibility",1
+2871.671028,1.402069,event,sysmon,self,stop
+2871.671035,1.402069,manual,,,end

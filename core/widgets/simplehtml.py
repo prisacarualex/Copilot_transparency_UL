@@ -21,6 +21,7 @@ class SimpleHTML(AbstractWidget):
         x: float = 0.5,
         y: float = 0.5,
         wrap_width: float = 1,
+        max_height: float | None = None,
         anchor_x: str = "center",
         anchor_y: str = "center",
     ) -> None:
@@ -31,6 +32,7 @@ class SimpleHTML(AbstractWidget):
         x_pos: int = int(self.container.l + x * self.container.w)
         y_pos: int = int(self.container.b + y * self.container.h)
         wrap_width_px: int = int(self.container.w * wrap_width)
+        height_px: int | None = int(self.container.h * max_height) if max_height is not None else None
 
         self.vertex["text"] = HTMLLabel(
             text,
@@ -41,6 +43,7 @@ class SimpleHTML(AbstractWidget):
             group=G(draw_order),
             multiline=True,
             width=wrap_width_px,
+            height=height_px,
             location=FileLocation("includes/img"),
         )
 

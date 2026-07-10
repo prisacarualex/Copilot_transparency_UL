@@ -8,8 +8,10 @@ import re
 from typing import Any, Callable
 
 from core import validation
+from core.container import Container
 from core.constants import COLORS as C
 from core.widgets import Frame, SimpleHTML
+from core.window import Window
 from plugins.abstractplugin import AbstractPlugin
 
 
@@ -20,11 +22,13 @@ class Copilot(AbstractPlugin):
         self.validation_dict: dict[str, Callable[..., Any] | tuple[Callable[..., Any], list[str]]] = {
             "transparency": (validation.is_in_list, ["transparent", "opaque"]),
             "maxvisiblemessages": validation.is_positive_integer,
+            "stretchintobottomright": validation.is_boolean,
         }
 
         new_par: dict[str, Any] = dict(
             transparency="transparent",
             maxvisiblemessages=10,
+            stretchintobottomright=True,
         )
         self.parameters.update(new_par)
         self.history: list[str] = []
@@ -35,6 +39,35 @@ class Copilot(AbstractPlugin):
 
         # Keep content below the plugin title strip when titles are enabled.
         panel_container = self.task_container
+
+        # Extend into the upper section of bottom-right when enabled.
+        # This creates a taller explanation panel while leaving room for pump status.
+        if self.parameters.get("stretchintobottomright", True) and self.parameters["taskplacement"] == "topright":
+            bottomright = Window.MainWindow.get_container("bottomright")
+            if bottomright is not None:
+                status_height_ratio = 0.6
+                resman = getattr(Window.MainWindow, "plugins", {}).get("resman")
+                if resman is not None:
+                    status_height_ratio = float(resman.parameters.get("statusheightratio", status_height_ratio))
+                status_height_ratio = max(0.0, min(status_height_ratio, 1.0))
+
+                extra_height_ratio = 1.0 - status_height_ratio
+                extension_h = bottomright.h * extra_height_ratio
+                if extension_h > 0:
+                    panel_left = max(self.task_container.l, bottomright.l)
+                    panel_right = min(self.task_container.l + self.task_container.w, bottomright.l + bottomright.w)
+                    if panel_right > panel_left:
+                        panel_bottom = bottomright.b + bottomright.h * status_height_ratio
+                        panel_top = self.task_container.b + self.task_container.h
+                        total_h = panel_top - panel_bottom
+                        if total_h > 0:
+                            panel_container = Container(
+                                "copilot_extended_panel",
+                                panel_left,
+                                panel_bottom,
+                                panel_right - panel_left,
+                                total_h,
+                            )
 
         # Visual frame for copilot explanations
         self.add_widget(
@@ -58,7 +91,8 @@ class Copilot(AbstractPlugin):
             text=self.get_formatted_text(),
             x=0.50,
             y=0.95,
-            wrap_width=0.88,
+            wrap_width=0.9,
+            max_height=0.80,
             anchor_x="center",
             anchor_y="top",
             draw_order=self.m_draw + 2,

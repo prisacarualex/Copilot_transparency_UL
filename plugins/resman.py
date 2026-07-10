@@ -64,6 +64,7 @@ class Resman(AbstractPlugin):
             "toleranceradius": validation.is_positive_integer,
             "statuslocation": validation.is_task_location,
             "displaystatus": validation.is_boolean,
+            "statusheightratio": validation.is_in_unit_interval,
             "tolerancecolor": validation.is_color,
             "tolerancecoloroutside": validation.is_color,
             "pump-1-flow": validation.is_positive_integer,
@@ -135,6 +136,7 @@ class Resman(AbstractPlugin):
             toleranceradius=250,
             statuslocation="bottomright",
             displaystatus=True,
+            statusheightratio=0.6,
             tolerancecolor=C["BLACK"],
             tolerancecoloroutside=C["BLACK"],
             tank=dict(
@@ -195,8 +197,8 @@ class Resman(AbstractPlugin):
         medium: float
         large: float
         small, medium, large = (x * self.task_container.w for x in [0.1, 0.12, 0.15])  # Tank widths
-        lower_y: float = self.task_container.b + 0.15 * self.task_container.h  # Bottom tank anchors
-        upper_y: float = self.task_container.b + 0.55 * self.task_container.h
+        lower_y: float = self.task_container.b + 0.20 * self.task_container.h  # Bottom tank anchors
+        upper_y: float = self.task_container.b + 0.60 * self.task_container.h
 
         # Tank left coordinates proportion
         l_prop_dict: dict[str, float] = dict(a=0.14, b=0.64, c=0.05, d=0.55, e=0.3, f=0.8)
@@ -218,8 +220,11 @@ class Resman(AbstractPlugin):
             # Get the pump status container
             pthp: float = PLUGIN_TITLE_HEIGHT_PROPORTION
             status_container: Container = Window.MainWindow.get_container(self.parameters["statuslocation"])
-            status_title_container: Container = status_container.reduce_and_translate(height=pthp, y=1)
-            status_task_container: Container = status_container.reduce_and_translate(height=1 - pthp, y=0)
+            status_height_ratio = float(self.parameters.get("statusheightratio", 0.3))
+            status_height_ratio = max(0.0, min(status_height_ratio, 1.0))
+            status_base_container: Container = status_container.reduce_and_translate(height=status_height_ratio, y=0)
+            status_title_container: Container = status_base_container.reduce_and_translate(height=pthp, y=1)
+            status_task_container: Container = status_base_container.reduce_and_translate(height=1 - pthp, y=0)
 
             # Add statuslocation foreground in case it is displayed
             self.add_widget(
@@ -241,10 +246,10 @@ class Resman(AbstractPlugin):
                 pos: int = int(pump_number) - 1
                 flow_container: Container = Container(
                     f"pump_{pump_number}",
-                    status_container.l,
-                    status_container.b + status_container.h * (0.8 - 0.1 * pos),
-                    status_container.w,
-                    status_container.h * 0.1,
+                    status_task_container.l,
+                    status_task_container.b + status_task_container.h * (0.97 - 0.1 * pos),
+                    status_task_container.w,
+                    status_task_container.h * 0.1,
                 )
 
                 this_pump["statuswidget"] = self.add_widget(
