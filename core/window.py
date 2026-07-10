@@ -36,9 +36,17 @@ class Window(Window):
         self._height: int = int(screen.height)
         self._fullscreen: bool = get_conf_value("Openmatb", "fullscreen")
 
-        super().__init__(
-            fullscreen=self._fullscreen, width=self._width, height=self._height, vsync=True, *args, **kwargs
-        )
+        # Passing explicit width/height together with fullscreen=True asks Cocoa to
+        # switch the display into that exact video mode, which can mismatch the
+        # screen's actual current (possibly scaled) resolution on Retina displays and
+        # leave the window smaller than the real desktop. Let fullscreen use whatever
+        # resolution the target screen is already running instead.
+        if self._fullscreen:
+            super().__init__(fullscreen=True, screen=screen, vsync=True, *args, **kwargs)
+        else:
+            super().__init__(
+                fullscreen=False, width=self._width, height=self._height, vsync=True, *args, **kwargs
+            )
 
         img_path: Any = P["IMG"]
         logo16: Any = image.load(img_path.joinpath("logo16.png"))
